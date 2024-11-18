@@ -26,7 +26,7 @@ public class AsteroidDaoImpl implements AsteroidDao {
 
     @Override
     public Asteroid findById(int id) {
-        return null;
+        return manager.find(Asteroid.class, id);
     }
 
     @Override
@@ -51,9 +51,20 @@ public class AsteroidDaoImpl implements AsteroidDao {
     }
 
     @Override
-    public void update(Asteroid obj) {
-        manager.getTransaction().begin();
-        
-        manager.getTransaction().commit();
+    public void update(Asteroid oldObj,Asteroid newObj) {
+        try{
+            manager.getTransaction().begin();
+
+            oldObj.setId(newObj.getId());
+            oldObj.setAprochments(newObj.getAprochments());
+            oldObj.setName(newObj.getName());
+            oldObj.setDiameter(newObj.getDiameter());
+            oldObj.setMagnitude(newObj.getMagnitude());
+            manager.merge(oldObj);
+            manager.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            manager.getTransaction().rollback();
+        }
     }
 }

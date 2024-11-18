@@ -7,5 +7,5 @@ public interface AsteroidDao extends GeneralDao<Asteroid> {
 
     void delete(Asteroid obj);
 
-    void update(Asteroid obj);
+    void update(Asteroid oldObj,Asteroid newObj);
 }

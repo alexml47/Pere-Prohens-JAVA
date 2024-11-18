@@ -39,8 +39,8 @@ public class NasaService{
         return asteroidDao.findById(id);
     }
 
-    public void update(Asteroid asteroid) {
-        asteroidDao.update(asteroid);
+    public void update(Asteroid oldAst,Asteroid newAst) {
+        asteroidDao.update(oldAst,newAst);
     }
 
     public void delete(Asteroid asteroid) {

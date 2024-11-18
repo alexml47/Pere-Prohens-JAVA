@@ -17,7 +17,7 @@
 <ul>
     <c:forEach var="asteroid" items='${asteroids}'>
         <li>
-            id: ${asteroid.id} name: ${asteroid.name}
+            <a href="asteroid?id=${asteroid.id}">Name: ${asteroid.name}</a>
             <ul>
                 <li>${asteroid.dangerous}</li>
                 <li>${asteroid.diameter}</li>
