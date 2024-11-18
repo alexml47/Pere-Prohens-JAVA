@@ -9,16 +9,13 @@ import org.example.nasa.model.Asteroid;
 import java.util.List;
 
 public class AsteroidDaoImpl implements AsteroidDao {
-    EntityManager manager;
-
-    public AsteroidDaoImpl() {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("nasa");
-        this.manager = emf.createEntityManager();
-    }
 
 
     @Override
     public List<Asteroid> findAll() {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("nasa");
+        EntityManager manager = emf.createEntityManager();
+
         Query query = manager.createQuery("select a from org.example.nasa.model.Asteroid a");
 
         return query.getResultList();
@@ -31,29 +28,24 @@ public class AsteroidDaoImpl implements AsteroidDao {
 
     @Override
     public void save(Asteroid obj) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("nasa");
+        EntityManager manager = emf.createEntityManager();
         manager.getTransaction().begin();
         try{
             manager.persist(obj);
         } catch (Exception e) {
-            throw new RuntimeException(e.getMessage());
+            throw new RuntimeException(e.getMessage() + "FDASFSADASDSA");
         }
         manager.getTransaction().commit();
     }
 
     @Override
     public void delete(Asteroid obj) {
-        manager.getTransaction().begin();
-        if (obj.getAprochments() != null) {
-            obj.getAprochments().removeAll(obj.getAprochments());
-        }
-        manager.remove(obj);
-        manager.getTransaction().commit();
+
     }
 
     @Override
     public void update(Asteroid obj) {
-        manager.getTransaction().begin();
-        
-        manager.getTransaction().commit();
+
     }
 }

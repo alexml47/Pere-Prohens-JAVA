@@ -54,9 +54,11 @@ public class NasaService{
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpResponse<String> getResponse = httpClient.send(getRequest, HttpResponse.BodyHandlers.ofString());
 
+        String jsonString = getResponse.body();
+
         List<JsonObject> returns = new ArrayList<>();
         Gson gson = new Gson();
-        JsonObject jsonObject = gson.fromJson(getResponse.body(), JsonObject.class);
+        JsonObject jsonObject = gson.fromJson(jsonString, JsonObject.class);
         returns.addAll(jsonObject.get("near_earth_objects")
                 .getAsJsonArray()
                 .asList()
