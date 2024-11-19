@@ -13,6 +13,7 @@
 <form action="synchronize" method="post">
     <button>Synchronize</button>
 </form>
+<a href="createAsteroid">Create Asteroid</a>
 <h1>Llista asteroids</h1>
 <ul>
     <c:forEach var="asteroid" items='${asteroids}'>

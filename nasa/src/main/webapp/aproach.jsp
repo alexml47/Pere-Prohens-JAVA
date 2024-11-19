@@ -14,7 +14,7 @@
     <ul>
         <c:forEach var="aproach" items='${aproaches}'>
             <li>
-                id: ${aproach.id} name: ${aproach.aproachDate}
+                name: ${aproach.aproachDate}
                 <ul>
                     <li>${aproach.velocity}</li>
                     <li>${aproach.distance}</li>

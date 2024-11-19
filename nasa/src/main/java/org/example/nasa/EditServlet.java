@@ -17,27 +17,19 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@WebServlet(name="asteroidServlet",value="/asteroid")
-public class AsteroidServlet extends HttpServlet {
+@WebServlet(name="editServlet", value="/edit")
+public class EditServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
 
+    }
+
+    public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
         try {
             NasaService service = new NasaService();
-            int id = Integer.parseInt(req.getParameter("id"));
-            req.setAttribute("asteroid",service.findAsteroid(id));
-
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
-
-        try {
-            req.getRequestDispatcher("asteroid.jsp").forward(req,res);
-        } catch (ServletException e) {
-            e.printStackTrace();
-        }
-
     }
 }
 

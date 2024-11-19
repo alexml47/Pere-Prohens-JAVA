@@ -9,13 +9,16 @@ import org.example.nasa.model.Aproach;
 import java.util.List;
 
 public class AproachDaoImpl implements AproachDao {
+    EntityManager manager;
+
+    public AproachDaoImpl() {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("nasa");
+        this.manager = emf.createEntityManager();
+    }
+
     @Override
     public List<Aproach> findAll() {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("nasa");
-
-        EntityManager em = emf.createEntityManager();
-
-        Query query = em.createQuery("select a from org.example.nasa.model.Aproach a");
+        Query query = manager.createQuery("select a from org.example.nasa.model.Aproach a");
 
         return query.getResultList();
     }
@@ -28,5 +31,13 @@ public class AproachDaoImpl implements AproachDao {
     @Override
     public void save(Aproach obj) {
 
+    }
+
+    @Override
+    public List<Aproach> getApproachesByAsteroidId(Long asteroidId) {
+        String query = "SELECT a FROM Aproach a WHERE a.asteroid.id = :asteroidId";
+        return manager.createQuery(query, Aproach.class)
+                .setParameter("asteroidId", asteroidId)
+                .getResultList();
     }
 }

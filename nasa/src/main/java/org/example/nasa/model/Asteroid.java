@@ -1,17 +1,20 @@
 package org.example.nasa.model;
 
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Data
 @Entity
 @Table(name = "asteroid")
 public class Asteroid {
     @Id
     @Column(name = "id")
     private int id;
-
 
     @Column(name = "name")
     private String name;
@@ -45,56 +48,15 @@ public class Asteroid {
         this.dangerous = dangerous;
     }
 
-    public Asteroid() {
-
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
+    public Asteroid(String name, double magnitude, double diameter, boolean dangerous) {
         this.name = name;
-    }
-
-    public double getMagnitude() {
-        return magnitude;
-    }
-
-    public void setMagnitude(double magnitude) {
         this.magnitude = magnitude;
-    }
-
-    public double getDiameter() {
-        return diameter;
-    }
-
-    public void setDiameter(double diameter) {
         this.diameter = diameter;
-    }
-
-    public boolean isDangerous() {
-        return dangerous;
-    }
-
-    public void setDangerous(boolean dangerous) {
         this.dangerous = dangerous;
     }
 
-    public List<Aproach> getAprochments() {
-        return aprochments;
-    }
+    public Asteroid() {
 
-    public void setAprochments(List<Aproach> aprochments) {
-        this.aprochments = aprochments;
     }
 
     @Override

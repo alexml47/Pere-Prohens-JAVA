@@ -11,10 +11,19 @@
 </head>
 <body>
 <h1>Asteroid</h1>
-<p><c:out value="${asteroid.id}"></c:out></p>
 <p><c:out value="${asteroid.name}"></c:out></p>
 <p><c:out value="${asteroid.dangerous}"></c:out></p>
 <p><c:out value="${asteroid.diameter}"></c:out></p>
 <p><c:out value="${asteroid.magnitude}"></c:out></p>
+
+<form action="aproach" method="post">
+    <input type="hidden" name="id" id="id" value="<c:out value="${asteroid.id}"></c:out>">
+    <button type="submit">Aproaches</button>
+</form>
+
+<form action="delete" method="post">
+    <input type="hidden" name="id" value="<c:out value="${asteroid.id}"></c:out>">
+    <button type="submit">Delete</button>
+</form>
 </body>
 </html>

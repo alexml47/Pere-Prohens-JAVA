@@ -13,7 +13,7 @@ public class Aproach {
     @Column(name = "id")
     private int id;
 
-    @Column(name = "aproach_date")
+    @Column(name = "aproachDate")
     private LocalDate aproachDate;
 
     @Column(name = "velocity")
@@ -22,7 +22,7 @@ public class Aproach {
     @Column(name = "distance")
     private double distance;
 
-    @Column(name = "orbiting_body")
+    @Column(name = "orbitingBody")
     private String orbitingBody;
 
     @ManyToOne

@@ -17,15 +17,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@WebServlet(name="asteroidServlet",value="/asteroid")
-public class AsteroidServlet extends HttpServlet {
+@WebServlet(name="aproachServlet",value="/aproach")
+public class AproachServlet extends HttpServlet {
 
-    public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
+    public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
 
         try {
             NasaService service = new NasaService();
-            int id = Integer.parseInt(req.getParameter("id"));
-            req.setAttribute("asteroid",service.findAsteroid(id));
+            req.setAttribute("aproaches",service.findAllAproachesByAsteroidId(Long.valueOf(req.getParameter("id"))));
 
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -33,7 +32,7 @@ public class AsteroidServlet extends HttpServlet {
 
 
         try {
-            req.getRequestDispatcher("asteroid.jsp").forward(req,res);
+            req.getRequestDispatcher("aproach.jsp").forward(req,res);
         } catch (ServletException e) {
             e.printStackTrace();
         }

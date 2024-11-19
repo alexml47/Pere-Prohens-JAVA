@@ -27,8 +27,8 @@ public class NasaService{
         return asteroidDao.findAll();
     }
 
-    public List<Aproach> findAllAproaches(){
-        return aproachDao.findAll();
+    public List<Aproach> findAllAproachesByAsteroidId(Long id){
+        return aproachDao.getApproachesByAsteroidId(id);
     }
 
     public void saveAsteroid(Asteroid asteroid){
@@ -112,12 +112,8 @@ public class NasaService{
 
             asteroids.add(ast);
 
-            try{
-                saveAsteroid(ast);
-            } catch (Exception e) {
-                throw new RuntimeException(e.getMessage() + "hola");
-            }
 
+            saveAsteroid(ast);
         }
     }
 }

@@ -1,9 +1,7 @@
 package org.example.nasa.dao;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
-import jakarta.persistence.Query;
+import jakarta.persistence.*;
+import org.example.nasa.model.Aproach;
 import org.example.nasa.model.Asteroid;
 
 import java.util.List;
@@ -31,21 +29,18 @@ public class AsteroidDaoImpl implements AsteroidDao {
 
     @Override
     public void save(Asteroid obj) {
-        manager.getTransaction().begin();
         try{
+            manager.getTransaction().begin();
             manager.persist(obj);
-        } catch (Exception e) {
-            throw new RuntimeException(e.getMessage());
+            manager.getTransaction().commit();
+        } catch (RollbackException e){
+            throw new RuntimeException(e);
         }
-        manager.getTransaction().commit();
     }
 
     @Override
     public void delete(Asteroid obj) {
         manager.getTransaction().begin();
-        if (obj.getAprochments() != null) {
-            obj.getAprochments().removeAll(obj.getAprochments());
-        }
         manager.remove(obj);
         manager.getTransaction().commit();
     }
@@ -56,10 +51,11 @@ public class AsteroidDaoImpl implements AsteroidDao {
             manager.getTransaction().begin();
 
             oldObj.setId(newObj.getId());
-            oldObj.setAprochments(newObj.getAprochments());
             oldObj.setName(newObj.getName());
             oldObj.setDiameter(newObj.getDiameter());
             oldObj.setMagnitude(newObj.getMagnitude());
+            oldObj.setAprochments(newObj.getAprochments());
+
             manager.merge(oldObj);
             manager.getTransaction().commit();
         } catch (Exception e) {
@@ -67,4 +63,6 @@ public class AsteroidDaoImpl implements AsteroidDao {
             manager.getTransaction().rollback();
         }
     }
+
+
 }
