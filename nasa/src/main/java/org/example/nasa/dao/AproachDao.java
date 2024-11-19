@@ -4,7 +4,7 @@ import org.example.nasa.model.Aproach;
 
 import java.util.List;
 
-public interface AproachDao extends GeneralDao<Aproach>{
+public interface AproachDao extends CrudDao<Aproach> {
 
-    public List<Aproach> getApproachesByAsteroidId(Long asteroidId);
+    List<Aproach> getApproachesByAsteroidId(Long asteroidId);
 }

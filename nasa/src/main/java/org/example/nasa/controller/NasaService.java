@@ -39,8 +39,8 @@ public class NasaService{
         return asteroidDao.findById(id);
     }
 
-    public void update(Asteroid oldAst,Asteroid newAst) {
-        asteroidDao.update(oldAst,newAst);
+    public void update(Asteroid obj) {
+        asteroidDao.update(obj);
     }
 
     public void delete(Asteroid asteroid) {
@@ -48,8 +48,9 @@ public class NasaService{
     }
 
     public void synchronize() throws URISyntaxException, IOException, InterruptedException {
+        String apiKey = "MzHYWv6eaaxfR5b6unKvncJYTq0jX4br1mhNd7Ib";
         HttpRequest getRequest = HttpRequest.newBuilder()
-                .uri(new URI("https://api.nasa.gov/neo/rest/v1/neo/browse?api_key=MzHYWv6eaaxfR5b6unKvncJYTq0jX4br1mhNd7Ib"))
+                .uri(new URI("https://api.nasa.gov/neo/rest/v1/neo/browse?api_key=" + apiKey))
                 .build();
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpResponse<String> getResponse = httpClient.send(getRequest, HttpResponse.BodyHandlers.ofString());

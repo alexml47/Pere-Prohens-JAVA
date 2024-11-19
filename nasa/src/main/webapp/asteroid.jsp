@@ -21,6 +21,11 @@
     <button type="submit">Aproaches</button>
 </form>
 
+<form action="editAsteroid" method="get">
+    <input type="hidden" name="id" value="<c:out value="${asteroid.id}"></c:out>">
+    <button type="submit">Edit</button>
+</form>
+
 <form action="delete" method="post">
     <input type="hidden" name="id" value="<c:out value="${asteroid.id}"></c:out>">
     <button type="submit">Delete</button>

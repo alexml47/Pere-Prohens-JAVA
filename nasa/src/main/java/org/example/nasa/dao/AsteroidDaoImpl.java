@@ -14,12 +14,9 @@ public class AsteroidDaoImpl implements AsteroidDao {
         this.manager = emf.createEntityManager();
     }
 
-
     @Override
     public List<Asteroid> findAll() {
-        Query query = manager.createQuery("select a from org.example.nasa.model.Asteroid a");
-
-        return query.getResultList();
+        return manager.createQuery("select a from org.example.nasa.model.Asteroid a", Asteroid.class).getResultList();
     }
 
     @Override
@@ -45,18 +42,12 @@ public class AsteroidDaoImpl implements AsteroidDao {
         manager.getTransaction().commit();
     }
 
+
     @Override
-    public void update(Asteroid oldObj,Asteroid newObj) {
+    public void update(Asteroid obj) {
         try{
             manager.getTransaction().begin();
-
-            oldObj.setId(newObj.getId());
-            oldObj.setName(newObj.getName());
-            oldObj.setDiameter(newObj.getDiameter());
-            oldObj.setMagnitude(newObj.getMagnitude());
-            oldObj.setAprochments(newObj.getAprochments());
-
-            manager.merge(oldObj);
+            manager.merge(obj);
             manager.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();

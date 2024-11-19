@@ -1,8 +1,5 @@
 package org.example.nasa;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -10,27 +7,27 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.example.nasa.controller.NasaService;
 import org.example.nasa.controller.NasaServiceFactory;
-import org.example.nasa.model.Aproach;
 import org.example.nasa.model.Asteroid;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
-@WebServlet(name="createAsteroidServlet",value="/createAsteroid")
-public class CreateAsteroidServlet extends HttpServlet {
+@WebServlet(name="editAsteroidServlet", value="/editAsteroid")
+public class EditAsteroidServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        NasaService service = NasaServiceFactory.createNasaService();
+        int id = Integer.parseInt(req.getParameter("id"));
+        Asteroid ast = service.findAsteroid(id);
+        req.setAttribute("asteroid", ast);
         try {
-            req.getRequestDispatcher("createAsteroid.jsp").forward(req,res);
+            req.getRequestDispatcher("editAsteroid.jsp").forward(req,res);
         } catch (ServletException e) {
             e.printStackTrace();
         }
     }
 
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
-
+        int id = Integer.parseInt(req.getParameter("id"));
         String name = req.getParameter("name");
         double magnitude = Double.parseDouble(req.getParameter("magnitude"));
         double diameter = Double.parseDouble(req.getParameter("diameter"));
@@ -38,13 +35,11 @@ public class CreateAsteroidServlet extends HttpServlet {
 
         try {
             NasaService service = NasaServiceFactory.createNasaService();
-            service.saveAsteroid(new Asteroid(name,magnitude,diameter,dangerous));
-
+            service.update(new Asteroid(id,name,magnitude,diameter,dangerous));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
-        res.sendRedirect("/nasa");
+        res.sendRedirect("/nasa/asteroid?id=" + id);
     }
 }
 

@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.example.nasa.controller.NasaService;
+import org.example.nasa.controller.NasaServiceFactory;
 import org.example.nasa.model.Aproach;
 import org.example.nasa.model.Asteroid;
 
@@ -23,7 +24,7 @@ public class AproachServlet extends HttpServlet {
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
 
         try {
-            NasaService service = new NasaService();
+            NasaService service = NasaServiceFactory.createNasaService();
             req.setAttribute("aproaches",service.findAllAproachesByAsteroidId(Long.valueOf(req.getParameter("id"))));
 
         } catch (Exception e) {

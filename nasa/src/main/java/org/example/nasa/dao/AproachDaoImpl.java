@@ -1,10 +1,8 @@
 package org.example.nasa.dao;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
-import jakarta.persistence.Query;
+import jakarta.persistence.*;
 import org.example.nasa.model.Aproach;
+import org.example.nasa.model.Asteroid;
 
 import java.util.List;
 
@@ -18,19 +16,23 @@ public class AproachDaoImpl implements AproachDao {
 
     @Override
     public List<Aproach> findAll() {
-        Query query = manager.createQuery("select a from org.example.nasa.model.Aproach a");
-
-        return query.getResultList();
+        return manager.createQuery("select a from org.example.nasa.model.Aproach a", Aproach.class).getResultList();
     }
 
     @Override
     public Aproach findById(int id) {
-        return null;
+        return manager.find(Aproach.class, id);
     }
 
     @Override
     public void save(Aproach obj) {
-
+        try{
+            manager.getTransaction().begin();
+            manager.persist(obj);
+            manager.getTransaction().commit();
+        } catch (RollbackException e){
+            throw new RuntimeException(e);
+        }
     }
 
     @Override

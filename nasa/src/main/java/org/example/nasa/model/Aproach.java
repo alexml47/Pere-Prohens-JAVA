@@ -3,6 +3,7 @@ package org.example.nasa.model;
 import java.time.LocalDate;
 
 import jakarta.persistence.*;
+import lombok.Setter;
 
 
 @Entity
@@ -13,6 +14,7 @@ public class Aproach {
     @Column(name = "id")
     private int id;
 
+    @Setter
     @Column(name = "aproachDate")
     private LocalDate aproachDate;
 
@@ -41,38 +43,6 @@ public class Aproach {
 
     public Aproach() {}
 
-    public LocalDate getAproachDate() {
-        return aproachDate;
-    }
-
-    public void setAproachDate(LocalDate aproachDate) {
-        this.aproachDate = aproachDate;
-    }
-
-    public double getVelocity() {
-        return velocity;
-    }
-
-    public void setVelocity(double velocity) {
-        this.velocity = velocity;
-    }
-
-    public double getDistance() {
-        return distance;
-    }
-
-    public void setDistance(double distance) {
-        this.distance = distance;
-    }
-
-    public String getOrbitingBody() {
-        return orbitingBody;
-    }
-
-    public void setOrbitingBody(String orbitingBody) {
-        this.orbitingBody = orbitingBody;
-    }
-
     @Override
     public String toString() {
         return "Aproach{" +
@@ -81,13 +51,5 @@ public class Aproach {
                 ", distance=" + distance +
                 ", orbitingBody='" + orbitingBody + '\'' +
                 '}';
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getId() {
-        return id;
     }
 }
