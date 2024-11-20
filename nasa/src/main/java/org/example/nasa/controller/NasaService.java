@@ -5,6 +5,8 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import org.example.nasa.dao.*;
+import org.example.nasa.dao.orm.AproachDaoImpl;
+import org.example.nasa.dao.orm.AsteroidDaoImpl;
 import org.example.nasa.model.Aproach;
 import org.example.nasa.model.Asteroid;
 
@@ -21,7 +23,6 @@ import java.util.List;
 public class NasaService{
     AproachDao aproachDao = new AproachDaoImpl();
     AsteroidDao asteroidDao = new AsteroidDaoImpl();
-
 
     public List<Asteroid> findAllAsteroids(){
         return asteroidDao.findAll();

@@ -1,8 +1,8 @@
-package org.example.nasa.dao;
+package org.example.nasa.dao.orm;
 
 import jakarta.persistence.*;
+import org.example.nasa.dao.AproachDao;
 import org.example.nasa.model.Aproach;
-import org.example.nasa.model.Asteroid;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ public class AproachDaoImpl implements AproachDao {
 
     @Override
     public List<Aproach> findAll() {
-        return manager.createQuery("select a from org.example.nasa.model.Aproach a", Aproach.class).getResultList();
+        return manager.createQuery("select a from Aproach a", Aproach.class).getResultList();
     }
 
     @Override

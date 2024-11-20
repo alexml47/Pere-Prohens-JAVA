@@ -39,7 +39,7 @@ public class EditAsteroidServlet extends HttpServlet {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        res.sendRedirect("/nasa/asteroid?id=" + id);
+        res.sendRedirect("asteroid?id=" + id);
     }
 }
 

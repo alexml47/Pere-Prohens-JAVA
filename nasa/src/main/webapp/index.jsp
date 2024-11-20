@@ -6,7 +6,7 @@
 <body>
 
 <%
-    String redirectURL = "nasa";
+    String redirectURL = "asteroids";
     response.sendRedirect(redirectURL);
 %>
 </body>

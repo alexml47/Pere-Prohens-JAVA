@@ -1,7 +1,7 @@
-package org.example.nasa.dao;
+package org.example.nasa.dao.orm;
 
 import jakarta.persistence.*;
-import org.example.nasa.model.Aproach;
+import org.example.nasa.dao.AsteroidDao;
 import org.example.nasa.model.Asteroid;
 
 import java.util.List;
@@ -16,7 +16,7 @@ public class AsteroidDaoImpl implements AsteroidDao {
 
     @Override
     public List<Asteroid> findAll() {
-        return manager.createQuery("select a from org.example.nasa.model.Asteroid a", Asteroid.class).getResultList();
+        return manager.createQuery("select a from Asteroid a", Asteroid.class).getResultList();
     }
 
     @Override

@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@WebServlet(name="nasaServlet",value="/nasa")
+@WebServlet(name="nasaServlet",value="/asteroids")
 public class NasaServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
