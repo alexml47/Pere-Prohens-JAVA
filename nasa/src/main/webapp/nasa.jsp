@@ -13,6 +13,13 @@
 <form action="synchronize" method="post">
     <button>Synchronize</button>
 </form>
+
+<form action="edit" method="post">
+    <input type="hidden" name="_method" value="patch">
+    
+</form>
+
+
 <a href="createAsteroid">Create Asteroid</a>
 <h1>Llista asteroids</h1>
 <ul>

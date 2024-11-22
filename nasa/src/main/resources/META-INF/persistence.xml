@@ -5,6 +5,10 @@
              version="3.2">
 
     <persistence-unit name="nasa">
+        <class>org.example.nasa.model.Asteroid</class>
+        <class>org.example.nasa.model.Aproach</class>
+        <class>org.example.nasa.model.User</class>
+
 
 
         <properties>
