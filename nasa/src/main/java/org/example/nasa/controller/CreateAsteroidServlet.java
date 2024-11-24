@@ -29,10 +29,7 @@ public class CreateAsteroidServlet extends HttpServlet {
         String name = req.getParameter("name");
         double magnitude = Double.parseDouble(req.getParameter("magnitude"));
         double diameter = Double.parseDouble(req.getParameter("diameter"));
-        boolean dangerous = false;
-        if (Objects.equals(req.getParameter("dangerous"), "on")){
-            dangerous = true;
-        }
+        boolean dangerous = Objects.equals(req.getParameter("dangerous"), "on");
 
         try {
             AsteroidService service = ServiceFactory.implementation(req).createAsteroidService();

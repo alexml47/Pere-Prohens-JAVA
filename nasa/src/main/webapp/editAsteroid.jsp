@@ -104,8 +104,13 @@
         <input type="text" name="diameter" id="diameter" value="<c:out value='${asteroid.diameter}'/>">
 
         <!-- Dangerous field -->
-        <label for="dangerous">Dangerous</label>
-        <input type="text" name="dangerous" id="dangerous" value="<c:out value='${asteroid.dangerous}'/>">
+        <div class="form-group">
+            <label for="dangerous">Dangerous (Yes/No)</label>
+            <input type="checkbox" name="dangerous" id="dangerous"
+                    <c:if test="${asteroid.dangerous}">
+                        checked
+                    </c:if> />
+        </div>
 
         <!-- Submit button -->
         <button type="submit">Submit</button>

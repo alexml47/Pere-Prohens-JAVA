@@ -89,8 +89,9 @@ public class AsteroidJdbcDaoImpl implements AsteroidDao {
         String query2 = "DELETE FROM `aproach` WHERE `id_asteroid` = " + obj.getId();
         try {
             Statement stmt = this.conn.createStatement();
-            stmt.execute(query2);
-            stmt.execute(query);
+            throw new RuntimeException(query);
+//            stmt.execute(query2);
+//            stmt.execute(query);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

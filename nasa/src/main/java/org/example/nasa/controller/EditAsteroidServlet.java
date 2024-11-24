@@ -13,6 +13,7 @@ import org.example.nasa.factory.ServiceFactory;
 import org.example.nasa.utils.Session;
 
 import java.io.IOException;
+import java.util.Objects;
 
 @WebServlet(name="editAsteroidServlet", value="/editAsteroid")
 public class EditAsteroidServlet extends HttpServlet {
@@ -23,6 +24,7 @@ public class EditAsteroidServlet extends HttpServlet {
         int id = Integer.parseInt(req.getParameter("id"));
         Asteroid ast = service.findAsteroid(id);
         req.setAttribute("asteroid", ast);
+
         try {
             req.getRequestDispatcher("editAsteroid.jsp").forward(req,res);
         } catch (ServletException e) {
@@ -37,7 +39,7 @@ public class EditAsteroidServlet extends HttpServlet {
         String name = req.getParameter("name");
         double magnitude = Double.parseDouble(req.getParameter("magnitude"));
         double diameter = Double.parseDouble(req.getParameter("diameter"));
-        boolean dangerous = Boolean.parseBoolean(req.getParameter("dangerous"));
+        boolean dangerous = Objects.equals(req.getParameter("dangerous"), "on");
 
         try {
             service.updateAsteroid(new Asteroid(id,name,magnitude,diameter,dangerous));
