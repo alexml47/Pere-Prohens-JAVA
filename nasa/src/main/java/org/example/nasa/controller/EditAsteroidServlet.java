@@ -5,9 +5,9 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.example.nasa.service.NasaService;
-import org.example.nasa.service.NasaServiceFactory;
+import org.example.nasa.service.AsteroidService;
 import org.example.nasa.model.Asteroid;
+import org.example.nasa.service.ServiceFactory;
 
 import java.io.IOException;
 
@@ -15,7 +15,7 @@ import java.io.IOException;
 public class EditAsteroidServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
-        NasaService service = NasaServiceFactory.createNasaService();
+        AsteroidService service = ServiceFactory.createAsteroidService();
         int id = Integer.parseInt(req.getParameter("id"));
         Asteroid ast = service.findAsteroid(id);
         req.setAttribute("asteroid", ast);
@@ -34,7 +34,7 @@ public class EditAsteroidServlet extends HttpServlet {
         boolean dangerous = Boolean.parseBoolean(req.getParameter("dangerous"));
 
         try {
-            NasaService service = NasaServiceFactory.createNasaService();
+            AsteroidService service = ServiceFactory.createAsteroidService();
             service.updateAsteroid(new Asteroid(id,name,magnitude,diameter,dangerous));
         } catch (Exception e) {
             throw new RuntimeException(e);

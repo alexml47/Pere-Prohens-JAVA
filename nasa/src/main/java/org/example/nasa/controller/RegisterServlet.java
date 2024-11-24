@@ -5,8 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.example.nasa.service.NasaService;
-import org.example.nasa.service.NasaServiceFactory;
+import org.example.nasa.service.*;
 import org.example.nasa.model.Rol;
 import org.example.nasa.model.User;
 
@@ -19,20 +18,22 @@ public class RegisterServlet extends HttpServlet {
         req.getRequestDispatcher("register.jsp").forward(req,res);
     }
 
-    public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        NasaService nasaService = NasaServiceFactory.createNasaService();
+    public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        UserService userService = ServiceFactory.createUserService();
+        RolService rolService = ServiceFactory.createRolService();
+
         String name = req.getParameter("username");
         String password = req.getParameter("password");
         String rol = req.getParameter("rol");
 
         Rol rolAssigned;
         if (Objects.equals(rol, "astronomer")) {
-            rolAssigned = nasaService.getRol("astronomer");
+            rolAssigned = rolService.getRol("astronomer");
         } else {
-            rolAssigned = nasaService.getRol("observer");
+            rolAssigned = rolService.getRol("observer");
         }
         User user = new User(name, password, rolAssigned);
-        nasaService.saveUser(user);
+        userService.saveUser(user);
         res.sendRedirect("asteroids");
     }
 }

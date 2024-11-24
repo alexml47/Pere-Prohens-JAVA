@@ -5,8 +5,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import org.example.nasa.service.NasaService;
+import org.example.nasa.service.AsteroidService;
+import org.example.nasa.service.ServiceFactory;
 
 import java.io.IOException;
 
@@ -15,7 +15,7 @@ public class AsteroidsServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
         try {
-            NasaService service = new NasaService();
+            AsteroidService service = ServiceFactory.createAsteroidService();
 
             req.setAttribute("asteroids",service.findAllAsteroids());
         } catch (Exception e) {

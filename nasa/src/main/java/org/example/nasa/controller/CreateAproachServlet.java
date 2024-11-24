@@ -6,8 +6,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.example.nasa.model.Aproach;
-import org.example.nasa.service.NasaService;
-import org.example.nasa.service.NasaServiceFactory;
+import org.example.nasa.service.*;
 import org.example.nasa.model.Asteroid;
 
 import java.io.IOException;
@@ -17,7 +16,7 @@ import java.time.LocalDate;
 public class CreateAproachServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
-        NasaService service = NasaServiceFactory.createNasaService();
+        AsteroidService service = ServiceFactory.createAsteroidService();
         int id = Integer.parseInt(req.getParameter("id"));
         Asteroid ast = service.findAsteroid(id);
         req.setAttribute("asteroid", ast);
@@ -29,15 +28,18 @@ public class CreateAproachServlet extends HttpServlet {
     }
 
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        AsteroidService asteroidService = ServiceFactory.createAsteroidService();
+        AproachService aproachService = ServiceFactory.createAproachService();
+
         LocalDate name = LocalDate.parse(req.getParameter("aproachDate"));
         double velocity = Double.parseDouble(req.getParameter("velocity"));
         double distance = Double.parseDouble(req.getParameter("distance"));
         String orbitingBody = req.getParameter("orbitingBody");
         int id_asteroid = Integer.parseInt(req.getParameter("id_asteroid"));
+
         try {
-            NasaService service = NasaServiceFactory.createNasaService();
-            Asteroid asteroid = service.findAsteroid(id_asteroid);
-            service.saveAproach(new Aproach(name,velocity,distance,orbitingBody,asteroid));
+            Asteroid asteroid = asteroidService.findAsteroid(id_asteroid);
+            aproachService.saveAproach(new Aproach(name,velocity,distance,orbitingBody,asteroid));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

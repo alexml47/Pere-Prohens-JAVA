@@ -6,8 +6,9 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import org.example.nasa.service.NasaService;
 import org.example.nasa.model.User;
+import org.example.nasa.service.ServiceFactory;
+import org.example.nasa.service.UserService;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -20,11 +21,11 @@ public class LoginServlet extends HttpServlet {
     }
 
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        NasaService nasaService = new NasaService();
+        UserService service = ServiceFactory.createUserService();
         String username = req.getParameter("username");
         String password = req.getParameter("password");
 
-        User user = nasaService.getUser(username);
+        User user = service.getUser(username);
 
         if (user == null){
             req.setAttribute("error","Invalid username");

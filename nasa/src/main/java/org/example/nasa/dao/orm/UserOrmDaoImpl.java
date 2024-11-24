@@ -41,7 +41,7 @@ public class UserOrmDaoImpl implements UserDao {
             manager.persist(user);
             manager.getTransaction().commit();
         } catch (RollbackException e){
-            throw new RuntimeException(String.valueOf(user) + "hola");
+            throw new RuntimeException(e);
         }
     }
 }

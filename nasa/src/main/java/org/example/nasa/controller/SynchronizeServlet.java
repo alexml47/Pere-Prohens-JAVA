@@ -4,7 +4,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.example.nasa.service.NasaService;
+import org.example.nasa.service.AsteroidService;
+import org.example.nasa.service.ServiceFactory;
 
 
 import java.io.IOException;
@@ -14,7 +15,7 @@ public class SynchronizeServlet extends HttpServlet {
 
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
         try {
-            NasaService service = new NasaService();
+            AsteroidService service = ServiceFactory.createAsteroidService();
 
             service.synchronize();
 
