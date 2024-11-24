@@ -1,23 +1,41 @@
 package org.example.JavaWeb.dao;
 
 import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.persistence.EntityManager;
 import org.example.JavaWeb.model.Movie;
-import jakarta.persistence.Persistence.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 
 @ApplicationScoped
 public class MovieDaoOrmImpl implements MovieDao {
 
     @Override
-    public ArrayList<Movie> findAll(){
+    public ArrayList<Movie> findAll() {
+        ArrayList<Movie> movies = new ArrayList<>();
+        try {
+            DBDao db = new DBDaoImpl();
+            String query = "select * from movies";
+            ResultSet result = db.executeQueryResult(query);
 
-        EntityManager em = ConnectionManager.getEntityManager();
-    }
+            while (result.next()) {
+                Long id = result.getLong("id");
+                String title = result.getString("title");
+                String description = result.getString("description");
+                int year = result.getInt("year");
+
+                Movie movie = new Movie(id, title, description, year);
+
+                movies.add(movie);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return movies;
+}
 
     @Override
     public Movie findById(Long id) {

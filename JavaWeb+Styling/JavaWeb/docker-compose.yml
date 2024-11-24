@@ -6,6 +6,7 @@ services:
       - "8080:8080"
     volumes:
       - ./target:/usr/local/tomee/webapps
+      - scss:/usr/local/tomee/webapps/JavaWeb/assets/scss
     environment:
       - WATCHPACK_POLLING=true
     depends_on:
@@ -35,5 +36,19 @@ services:
     depends_on:
       - db
 
+  java-style:
+    container_name: style
+    image: node:20
+    working_dir: /app
+    tty: true
+    stdin_open: true
+    volumes:
+      - ../StyleJava/vite:/app
+      - scss:/app/tomee
+    ports:
+      - "8082:5173"
+
+
 volumes:
   db_data:
+  scss:
