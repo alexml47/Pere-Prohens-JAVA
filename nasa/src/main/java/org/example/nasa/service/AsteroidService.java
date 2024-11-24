@@ -45,7 +45,6 @@ public class AsteroidService {
                 }
             }
         }
-
         AsteroidJsonConvertor api = new AsteroidJsonConvertor();
         for(Asteroid asteroid : api.getAsteroids()){
             saveAsteroid(asteroid);

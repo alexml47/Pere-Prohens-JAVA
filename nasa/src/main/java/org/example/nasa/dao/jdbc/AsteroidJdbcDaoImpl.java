@@ -89,9 +89,8 @@ public class AsteroidJdbcDaoImpl implements AsteroidDao {
         String query2 = "DELETE FROM `aproach` WHERE `id_asteroid` = " + obj.getId();
         try {
             Statement stmt = this.conn.createStatement();
-            throw new RuntimeException(query);
-//            stmt.execute(query2);
-//            stmt.execute(query);
+            stmt.execute(query2);
+            stmt.execute(query);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -124,7 +123,8 @@ public class AsteroidJdbcDaoImpl implements AsteroidDao {
         double magnitude = rs.getDouble("magnitude");
         double diameter = rs.getDouble("diameter");
         boolean dangerous = rs.getBoolean("dangerous");
+        boolean nasaAsteroid = rs.getBoolean("nasaAsteroid");
 
-        return new Asteroid(id,name,magnitude,diameter,dangerous);
+        return new Asteroid(id,name,magnitude,diameter,dangerous,nasaAsteroid);
     }
 }

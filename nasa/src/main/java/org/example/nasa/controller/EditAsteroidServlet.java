@@ -40,9 +40,10 @@ public class EditAsteroidServlet extends HttpServlet {
         double magnitude = Double.parseDouble(req.getParameter("magnitude"));
         double diameter = Double.parseDouble(req.getParameter("diameter"));
         boolean dangerous = Objects.equals(req.getParameter("dangerous"), "on");
+        boolean nasaAsteroid = Boolean.parseBoolean(req.getParameter("nasaAsteroid"));
 
         try {
-            service.updateAsteroid(new Asteroid(id,name,magnitude,diameter,dangerous));
+            service.updateAsteroid(new Asteroid(id,name,magnitude,diameter,dangerous,nasaAsteroid));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

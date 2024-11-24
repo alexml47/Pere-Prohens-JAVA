@@ -35,15 +35,16 @@ public class Asteroid {
     @OneToMany(mappedBy = "asteroid", cascade = CascadeType.ALL)
     private List<Aproach> aprochments;
 
-    public Asteroid(int id, String name, double magnitude, double diameter, boolean dangerous) {
-        this.id = id;
+    public Asteroid(String name, double magnitude, double diameter, boolean dangerous, boolean nasaAsteroid) {
         this.name = name;
         this.magnitude = magnitude;
         this.diameter = diameter;
         this.dangerous = dangerous;
+        this.nasaAsteroid = nasaAsteroid;
     }
 
-    public Asteroid(String name, double magnitude, double diameter, boolean dangerous, boolean nasaAsteroid) {
+    public Asteroid(int id,String name, double magnitude, double diameter, boolean dangerous, boolean nasaAsteroid) {
+        this.id = id;
         this.name = name;
         this.magnitude = magnitude;
         this.diameter = diameter;

@@ -90,6 +90,7 @@
     <form action="editAsteroid" method="post">
         <!-- Hidden input for the asteroid ID -->
         <input type="hidden" name="id" id="id" value="<c:out value='${asteroid.id}'/>">
+        <input type="hidden" name="nasaAsteroid" id="nasaAsteroid" value="<c:out value='${asteroid.nasaAsteroid}'/>">
 
         <!-- Name field -->
         <label for="name">Name</label>
