@@ -8,8 +8,8 @@ import org.example.nasa.model.Rol;
 public class RolService {
     private RolDao daoImpl;
 
-    public RolService (){
-        daoImpl = new RolOrmDaoImpl();
+    public RolService (RolDao implementation){
+        daoImpl = implementation;
     }
 
     public Rol getRol(String rol){

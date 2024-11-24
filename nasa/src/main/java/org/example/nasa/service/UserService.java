@@ -8,8 +8,8 @@ import org.example.nasa.model.User;
 public class UserService {
     private UserDao daoImpl;
 
-    public UserService (){
-        daoImpl = new UserOrmDaoImpl();
+    public UserService (UserDao implemenation){
+        daoImpl = implemenation;
     }
 
     public User getUser(String name){

@@ -6,9 +6,13 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import org.example.nasa.dao.orm.UserOrmDaoImpl;
+import org.example.nasa.factory.ServiceOrmFactory;
 import org.example.nasa.model.User;
-import org.example.nasa.service.ServiceFactory;
+import org.example.nasa.factory.ServiceFactory;
+import org.example.nasa.service.AsteroidService;
 import org.example.nasa.service.UserService;
+import org.example.nasa.utils.Session;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -21,9 +25,12 @@ public class LoginServlet extends HttpServlet {
     }
 
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        UserService service = ServiceFactory.createUserService();
+        ServiceFactory factory = ServiceFactory.implementation(req);
+        UserService service = factory.createUserService();
+
         String username = req.getParameter("username");
         String password = req.getParameter("password");
+        String implementation = req.getParameter("implementation");
 
         User user = service.getUser(username);
 
@@ -32,14 +39,16 @@ public class LoginServlet extends HttpServlet {
             req.getRequestDispatcher("login.jsp").forward(req,res);
         } else {
             if (user.getPassword().equals(password)){
-                HttpSession session = req.getSession();
-
-                session.setAttribute("Observer",true);
-                session.setAttribute("Astronomer",false);
+                Session.setAttribute(req,"Observer",true);
+                Session.setAttribute(req,"Astronomer",false);
 
                 if(Objects.equals(user.getRol().getRol(), "astronomer")){
-                    session.setAttribute("Astronomer",true);
+                    Session.setAttribute(req,"Astronomer",true);
+                } else {
+                    Session.setAttribute(req,"Astronomer",false);
                 }
+
+                Session.setAttribute(req,"implementation",implementation);
                 res.sendRedirect("asteroids");
             } else {
                 req.setAttribute("error","Invalid password");

@@ -104,6 +104,13 @@
             <label for="password">Password</label>
             <input type="password" name="password" id="password" required>
         </div>
+        <div class="form-group">
+            <label for="implementation">Implementation</label>
+            <select name="implementation" id="implementation">
+                <option value="ORM">ORM</option>
+                <option value="JDBC">JDBC</option>
+            </select>
+        </div>
         <div>
             <button type="submit">Login</button>
         </div>

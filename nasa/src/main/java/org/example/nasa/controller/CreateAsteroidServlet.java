@@ -5,9 +5,11 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.example.nasa.dao.orm.AsteroidOrmDaoImpl;
 import org.example.nasa.service.AsteroidService;
 import org.example.nasa.model.Asteroid;
-import org.example.nasa.service.ServiceFactory;
+import org.example.nasa.factory.ServiceFactory;
+import org.example.nasa.utils.Session;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -33,7 +35,7 @@ public class CreateAsteroidServlet extends HttpServlet {
         }
 
         try {
-            AsteroidService service = ServiceFactory.createAsteroidService();
+            AsteroidService service = ServiceFactory.implementation(req).createAsteroidService();
             service.saveAsteroid(new Asteroid(name,magnitude,diameter,dangerous,false));
 
         } catch (Exception e) {

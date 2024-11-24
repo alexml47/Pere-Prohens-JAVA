@@ -12,8 +12,8 @@ import java.util.List;
 public class AsteroidService {
     private AsteroidDao daoImpl;
 
-    public AsteroidService (){
-        daoImpl = new AsteroidOrmDaoImpl();
+    public AsteroidService (AsteroidDao implementation){
+        daoImpl = implementation;
     }
 
     public List<Asteroid> findAllAsteroids(){

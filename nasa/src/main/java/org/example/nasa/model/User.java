@@ -29,4 +29,11 @@ public class User {
     }
 
     public User() {}
+
+    public User(int id, String password, String name, Rol rol) {
+        this.id = id;
+        this.password = password;
+        this.name = name;
+        this.rol = rol;
+    }
 }

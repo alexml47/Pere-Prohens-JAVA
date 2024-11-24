@@ -75,6 +75,10 @@
             margin-top: 20px;
         }
 
+        .error-message h1{
+            color: red;
+        }
+
         .login-link {
             display: block;
             text-align: center;
@@ -107,8 +111,12 @@
         </div>
         <div>
             <label for="rol">Role</label>
-            <input type="text" name="rol" id="rol" required>
+            <select name="rol" id="rol">
+                <option value="astronomer">Astronomer</option>
+                <option value="observer">Observer</option>
+            </select>
         </div>
+        <br>
         <div>
             <button type="submit">Register</button>
         </div>

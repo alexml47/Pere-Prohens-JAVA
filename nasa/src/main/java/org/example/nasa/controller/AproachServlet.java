@@ -5,8 +5,11 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.example.nasa.dao.orm.AproachOrmDaoImpl;
 import org.example.nasa.service.AproachService;
-import org.example.nasa.service.ServiceFactory;
+import org.example.nasa.factory.ServiceFactory;
+import org.example.nasa.service.AsteroidService;
+import org.example.nasa.utils.Session;
 
 import java.io.IOException;
 
@@ -14,7 +17,8 @@ import java.io.IOException;
 public class AproachServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
-        AproachService service = ServiceFactory.createAproachService();
+        AproachService service = ServiceFactory.implementation(req).createAproachService();
+
         int id = Integer.parseInt(req.getParameter("id"));
         req.setAttribute("aproaches",service.findAllAproachesByAsteroidId(id));
         req.setAttribute("asteroid", id);

@@ -5,9 +5,13 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.example.nasa.dao.orm.AproachOrmDaoImpl;
+import org.example.nasa.dao.orm.AsteroidOrmDaoImpl;
+import org.example.nasa.factory.ServiceFactory;
 import org.example.nasa.model.Aproach;
 import org.example.nasa.service.*;
 import org.example.nasa.model.Asteroid;
+import org.example.nasa.utils.Session;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -16,7 +20,8 @@ import java.time.LocalDate;
 public class CreateAproachServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
-        AsteroidService service = ServiceFactory.createAsteroidService();
+        AsteroidService service = ServiceFactory.implementation(req).createAsteroidService();
+
         int id = Integer.parseInt(req.getParameter("id"));
         Asteroid ast = service.findAsteroid(id);
         req.setAttribute("asteroid", ast);
@@ -28,8 +33,8 @@ public class CreateAproachServlet extends HttpServlet {
     }
 
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
-        AsteroidService asteroidService = ServiceFactory.createAsteroidService();
-        AproachService aproachService = ServiceFactory.createAproachService();
+        AsteroidService asteroidService = ServiceFactory.implementation(req).createAsteroidService();
+        AproachService aproachService = ServiceFactory.implementation(req).createAproachService();
 
         LocalDate name = LocalDate.parse(req.getParameter("aproachDate"));
         double velocity = Double.parseDouble(req.getParameter("velocity"));

@@ -5,9 +5,13 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.example.nasa.dao.orm.RolOrmDaoImpl;
+import org.example.nasa.dao.orm.UserOrmDaoImpl;
+import org.example.nasa.factory.ServiceFactory;
 import org.example.nasa.service.*;
 import org.example.nasa.model.Rol;
 import org.example.nasa.model.User;
+import org.example.nasa.utils.Session;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -19,21 +23,29 @@ public class RegisterServlet extends HttpServlet {
     }
 
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
-        UserService userService = ServiceFactory.createUserService();
-        RolService rolService = ServiceFactory.createRolService();
+        RolService rolService = ServiceFactory.implementation(req).createRolService();
+        UserService userService = ServiceFactory.implementation(req).createUserService();
 
         String name = req.getParameter("username");
         String password = req.getParameter("password");
         String rol = req.getParameter("rol");
-
-        Rol rolAssigned;
-        if (Objects.equals(rol, "astronomer")) {
-            rolAssigned = rolService.getRol("astronomer");
+        if (userService.getUser(name) != null) {
+            try{
+                req.setAttribute("error","User already exists");
+                req.getRequestDispatcher("register.jsp").forward(req,res);
+            } catch (ServletException e) {
+                throw new RuntimeException(e);
+            }
         } else {
-            rolAssigned = rolService.getRol("observer");
+            Rol rolAssigned;
+            if (Objects.equals(rol, "astronomer")) {
+                rolAssigned = rolService.getRol("astronomer");
+            } else {
+                rolAssigned = rolService.getRol("observer");
+            }
+            User user = new User(name, password, rolAssigned);
+            userService.saveUser(user);
+            res.sendRedirect("asteroids");
         }
-        User user = new User(name, password, rolAssigned);
-        userService.saveUser(user);
-        res.sendRedirect("asteroids");
     }
 }

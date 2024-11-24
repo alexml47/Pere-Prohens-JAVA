@@ -16,6 +16,17 @@ public class RolOrmDaoImpl implements RolDao {
         this.manager = emf.createEntityManager();
     }
 
+    public Rol getRol(int id) {
+        String query = "SELECT a FROM Rol a WHERE a.id = :id";
+        try {
+            return manager.createQuery(query, Rol.class)
+                    .setParameter("id", id)
+                    .getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+
     @Override
     public Rol getRol(String rol) {
         String query = "SELECT a FROM Rol a WHERE a.rol = :rol";

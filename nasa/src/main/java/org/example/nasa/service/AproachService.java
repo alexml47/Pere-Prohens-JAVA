@@ -11,8 +11,8 @@ import java.util.List;
 public class AproachService {
     private AproachDao daoImpl;
 
-    public AproachService (){
-        daoImpl = new AproachOrmDaoImpl();
+    public AproachService (AproachDao implementation){
+        daoImpl = implementation;
     }
 
     public void saveAproach(Aproach aproach){
