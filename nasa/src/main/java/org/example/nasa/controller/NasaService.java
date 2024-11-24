@@ -1,29 +1,17 @@
 package org.example.nasa.controller;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import org.example.nasa.dao.*;
-import org.example.nasa.dao.orm.AproachDaoImpl;
-import org.example.nasa.dao.orm.AsteroidDaoImpl;
+import org.example.nasa.dao.orm.AproachOrmDaoImpl;
+import org.example.nasa.dao.orm.AsteroidOrmDaoImpl;
 import org.example.nasa.model.Aproach;
 import org.example.nasa.model.Asteroid;
 import org.example.nasa.service.AsteroidApiService;
 
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 public class NasaService{
-    AproachDao aproachDao = new AproachDaoImpl();
-    AsteroidDao asteroidDao = new AsteroidDaoImpl();
+    AproachDao aproachDao = new AproachOrmDaoImpl();
+    AsteroidDao asteroidDao = new AsteroidOrmDaoImpl();
 
     public List<Asteroid> findAllAsteroids(){
         return asteroidDao.findAll();

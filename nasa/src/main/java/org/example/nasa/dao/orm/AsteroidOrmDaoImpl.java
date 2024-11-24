@@ -6,10 +6,10 @@ import org.example.nasa.model.Asteroid;
 
 import java.util.List;
 
-public class AsteroidDaoImpl implements AsteroidDao {
+public class AsteroidOrmDaoImpl implements AsteroidDao {
     EntityManager manager;
 
-    public AsteroidDaoImpl() {
+    public AsteroidOrmDaoImpl() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("nasa");
         this.manager = emf.createEntityManager();
     }

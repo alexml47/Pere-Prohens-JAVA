@@ -6,10 +6,10 @@ import org.example.nasa.model.Aproach;
 
 import java.util.List;
 
-public class AproachDaoImpl implements AproachDao {
+public class AproachOrmDaoImpl implements AproachDao {
     EntityManager manager;
 
-    public AproachDaoImpl() {
+    public AproachOrmDaoImpl() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("nasa");
         this.manager = emf.createEntityManager();
     }
