@@ -43,7 +43,16 @@ public class Aproach {
         this.asteroid = asteroid;
     }
 
+    public Aproach(int id, LocalDate aproachDate, double velocity, double distance, String orbitingBody) {
+        this.id = id;
+        this.aproachDate = aproachDate;
+        this.velocity = velocity;
+        this.distance = distance;
+        this.orbitingBody = orbitingBody;
+    }
+
     public Aproach() {}
+
 
     @Override
     public String toString() {

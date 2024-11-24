@@ -1,10 +1,14 @@
 package org.example.nasa.controller;
 
 import org.example.nasa.dao.*;
+import org.example.nasa.dao.jdbc.AproachJdbcDaoImpl;
+import org.example.nasa.dao.jdbc.AsteroidJdbcDaoImpl;
 import org.example.nasa.dao.orm.AproachOrmDaoImpl;
 import org.example.nasa.dao.orm.AsteroidOrmDaoImpl;
+import org.example.nasa.dao.orm.UserOrmDaoImpl;
 import org.example.nasa.model.Aproach;
 import org.example.nasa.model.Asteroid;
+import org.example.nasa.model.User;
 import org.example.nasa.service.AsteroidApiService;
 
 import java.util.List;
@@ -12,6 +16,15 @@ import java.util.List;
 public class NasaService{
     AproachDao aproachDao = new AproachOrmDaoImpl();
     AsteroidDao asteroidDao = new AsteroidOrmDaoImpl();
+    UserDao userDao = new UserOrmDaoImpl();
+
+    public void saveUser(User user){
+        userDao.save(user);
+    }
+
+    public boolean userAstronomer(User user){
+        return userDao.userAstronomer(user);
+    }
 
     public List<Asteroid> findAllAsteroids(){
         return asteroidDao.findAll();

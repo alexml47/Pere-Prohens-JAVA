@@ -19,7 +19,6 @@ public class AsteroidApiService {
         List<Asteroid> asteroids = new ArrayList<Asteroid>();
 
         for (JsonObject ast : astJson) {
-            int id = getParameter(ast,"id").getAsInt();
             String name = getParameter(ast,"name").getAsString();
             double magnitude = getParameter(ast,"absolute_magnitude_h").getAsDouble();
             boolean dangerous = getParameter(ast,"is_potentially_hazardous_asteroid").getAsBoolean();
@@ -27,7 +26,7 @@ public class AsteroidApiService {
             double avgKilometer = 0.5 * (
                     getParameter(kilometers.getAsJsonObject(),"estimated_diameter_min").getAsDouble() +
                     getParameter(kilometers.getAsJsonObject(),"estimated_diameter_max").getAsDouble());
-            Asteroid asteroid = new Asteroid(id,name,magnitude,avgKilometer,dangerous);
+            Asteroid asteroid = new Asteroid(name,magnitude,avgKilometer,dangerous);
             asteroid.setAprochments(
                     getAproaches(
                             getParameter(ast,"close_approach_data").getAsJsonArray(), asteroid));
