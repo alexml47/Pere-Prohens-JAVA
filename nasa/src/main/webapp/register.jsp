@@ -21,7 +21,7 @@
         <input type="text" name="rol" id="rol">
     </div>
     <div>
-        <button type="submit">Login</button>
+        <button type="submit">Register</button>
     </div>
     <div>
         <h1><c:out value="${error}"></c:out></h1>

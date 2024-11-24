@@ -32,5 +32,7 @@ public class RegisterServlet extends HttpServlet {
             rolAssigned = nasaService.getRol("observer");
         }
         User user = new User(name, password, rolAssigned);
+        nasaService.saveUser(user);
+        res.sendRedirect("/asteroids");
     }
 }

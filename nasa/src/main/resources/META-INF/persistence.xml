@@ -8,6 +8,7 @@
         <class>org.example.nasa.model.Asteroid</class>
         <class>org.example.nasa.model.Aproach</class>
         <class>org.example.nasa.model.User</class>
+        <class>org.example.nasa.model.Rol</class>
 
 
 
