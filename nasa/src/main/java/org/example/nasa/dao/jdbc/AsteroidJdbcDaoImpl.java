@@ -99,11 +99,15 @@ public class AsteroidJdbcDaoImpl implements AsteroidDao {
 
     @Override
     public void update(Asteroid obj) {
+        int dangerous = 0;
+        if (obj.isDangerous()){
+            dangerous = 1;
+        }
         String query = "UPDATE `asteroid` " +
                 "SET `name`=" + "'" + obj.getName() + "'" +
                 ",`magnitude`=" + "'" + obj.getMagnitude() + "'" +
                 ",`diameter`=" + "'" + obj.getDiameter() + "'" +
-                ",`dangerous`=" + "'" + obj.isDangerous() + "'" +
+                ",`dangerous`=" + "'" + dangerous + "'" +
                 "WHERE id = " + obj.getId();
         try {
             Statement stmt = this.conn.createStatement();
