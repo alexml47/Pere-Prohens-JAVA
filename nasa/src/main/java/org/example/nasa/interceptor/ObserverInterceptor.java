@@ -12,7 +12,7 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
-@WebFilter(servletNames = {"aproachServlet","asteroidServlet","nasaServlet"})
+@WebFilter(servletNames = {"aproachServlet","asteroidServlet","asteroidsServlet"})
 public class ObserverInterceptor implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {

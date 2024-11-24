@@ -84,13 +84,21 @@
     <!-- Approaches link -->
     <a href="aproach?id=${asteroid.id}">Approaches</a>
 
-    <!-- Edit link -->
-    <a href="editAsteroid?id=${asteroid.id}">Edit</a>
+    <c:choose>
+        <c:when test="${sessionScope.Astronomer == true}">
+            <!-- Edit link -->
+            <a href="editAsteroid?id=${asteroid.id}">Edit</a>
 
-    <form action="delete" method="post">
-        <input type="hidden" name="id" value="${asteroid.id}">
-        <button type="submit">Delete</button>
-    </form>
+            <!-- Delete Button -->
+            <form action="delete" method="post">
+                <input type="hidden" name="id" value="${asteroid.id}">
+                <button type="submit">Delete</button>
+            </form>
+        </c:when>
+
+        <c:otherwise>
+        </c:otherwise>
+    </c:choose>
 
     <!-- Return link -->
     <a href="asteroids">Return</a>

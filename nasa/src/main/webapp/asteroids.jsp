@@ -88,20 +88,29 @@
 <body>
 
 <div class="container">
-    <!-- Synchronize and Edit buttons -->
-    <div class="form-container">
-        <form action="synchronize" method="post">
-            <button class="button" type="submit">Synchronize</button>
-        </form>
 
-        <form action="edit" method="post">
-            <input type="hidden" name="_method" value="patch">
-            <!-- Edit functionality can be implemented here if needed -->
+    <div class="form-container">
+        <c:choose>
+            <c:when test="${sessionScope.Astronomer == true}">
+                <!-- Synchronize Button -->
+                <form action="synchronize" method="post">
+                    <button class="button" type="submit">Synchronize</button>
+                </form>
+
+                <!-- Create Asteroid Button -->
+                <form action="createAsteroid" method="get">
+                    <button class="button" type="submit">Create Asteroid</button>
+                </form>
+            </c:when>
+
+            <c:otherwise>
+            </c:otherwise>
+        </c:choose>
+        <!-- Logout Button -->
+        <form action="logout" method="post">
+            <button class="button" type="submit">Logout</button>
         </form>
     </div>
-
-    <!-- Create Asteroid Link -->
-    <a href="createAsteroid" class="button">Create Asteroid</a>
 
     <h1>List of Asteroids</h1>
 

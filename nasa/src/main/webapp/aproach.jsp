@@ -101,11 +101,18 @@
         </div>
     </c:forEach>
 
+    <!-- Create Approach Link -->
+    <c:choose>
+        <c:when test="${sessionScope.Astronomer == true}">
+            <a href="createAproach?id=${asteroid}">Create Approach</a>
+        </c:when>
+
+        <c:otherwise>
+        </c:otherwise>
+    </c:choose>
+
     <!-- Return Link -->
     <a href="asteroid?id=${asteroid}">Return</a>
-
-    <!-- Create Approach Link -->
-    <a href="createAproach?id=${asteroid}">Create Approach</a>
 </div>
 
 </body>
