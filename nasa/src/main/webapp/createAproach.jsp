@@ -74,12 +74,12 @@
 
     <div class="form-group">
       <label for="velocity">Velocity (km/s)</label>
-      <input type="number" name="velocity" id="velocity" required>
+      <input type="number" step="any" name="velocity" id="velocity" required>
     </div>
 
     <div class="form-group">
       <label for="distance">Distance (km)</label>
-      <input type="number" name="distance" id="distance" required>
+      <input type="number" step="any" name="distance" id="distance" required>
     </div>
 
     <div class="form-group">

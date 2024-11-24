@@ -27,6 +27,10 @@ SET time_zone = "+00:00";
 -- Table structure for table `aproach`
 --
 
+CREATE DATABASE nasa;
+
+use nasa;
+
 CREATE TABLE `aproach` (
                            `id` int NOT NULL,
                            `aproachDate` date NOT NULL,

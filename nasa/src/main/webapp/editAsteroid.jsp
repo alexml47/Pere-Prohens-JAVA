@@ -98,11 +98,11 @@
 
         <!-- Magnitude field -->
         <label for="magnitude">Magnitude</label>
-        <input type="text" name="magnitude" id="magnitude" value="<c:out value='${asteroid.magnitude}'/>">
+        <input type="number" step="any" name="magnitude" id="magnitude" value="<c:out value='${asteroid.magnitude}'/>">
 
         <!-- Diameter field -->
         <label for="diameter">Diameter</label>
-        <input type="text" name="diameter" id="diameter" value="<c:out value='${asteroid.diameter}'/>">
+        <input type="number" step="any" name="diameter" id="diameter" value="<c:out value='${asteroid.diameter}'/>">
 
         <!-- Dangerous field -->
         <div class="form-group">

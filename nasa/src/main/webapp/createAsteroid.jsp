@@ -76,12 +76,12 @@
 
     <div class="form-group">
       <label for="magnitude">Magnitude</label>
-      <input type="number" name="magnitude" id="magnitude" required>
+      <input type="number" step="any" name="magnitude" id="magnitude" required>
     </div>
 
     <div class="form-group">
       <label for="diameter">Diameter (km)</label>
-      <input type="number" name="diameter" id="diameter" required>
+      <input type="number" step="any" name="diameter" id="diameter" required>
     </div>
 
     <div class="form-group">
