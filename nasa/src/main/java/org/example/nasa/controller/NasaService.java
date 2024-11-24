@@ -5,9 +5,11 @@ import org.example.nasa.dao.jdbc.AproachJdbcDaoImpl;
 import org.example.nasa.dao.jdbc.AsteroidJdbcDaoImpl;
 import org.example.nasa.dao.orm.AproachOrmDaoImpl;
 import org.example.nasa.dao.orm.AsteroidOrmDaoImpl;
+import org.example.nasa.dao.orm.RolOrmDaoImpl;
 import org.example.nasa.dao.orm.UserOrmDaoImpl;
 import org.example.nasa.model.Aproach;
 import org.example.nasa.model.Asteroid;
+import org.example.nasa.model.Rol;
 import org.example.nasa.model.User;
 import org.example.nasa.service.AsteroidApiService;
 
@@ -17,6 +19,11 @@ public class NasaService{
     AproachDao aproachDao = new AproachOrmDaoImpl();
     AsteroidDao asteroidDao = new AsteroidOrmDaoImpl();
     UserDao userDao = new UserOrmDaoImpl();
+    RolDao rolDao = new RolOrmDaoImpl();
+
+    public Rol getRol(String rol){
+        return rolDao.getRol(rol);
+    }
 
     public void saveUser(User user){
         userDao.save(user);

@@ -18,16 +18,10 @@ public class UserOrmDaoImpl implements UserDao {
     }
 
     @Override
-    public List<User> findAll() {
-        return manager.createQuery("select a from User a", User.class).getResultList();
+    public boolean checkUser(String name, String password) {
+        User user = manager.find(User.class, name);
+        return user.getPassword().equals(password);
     }
-
-    @Override
-    public User findById(int id) {
-        return manager.find(User.class, id);
-    }
-
-
 
     @Override
     public void save(User obj) {

@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table
+@Table(name = "User")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,8 +13,20 @@ public class User {
     int id;
 
     @Column
-    String userName;
+    String name;
 
     @Column
     String password;
+
+    @ManyToOne
+    @JoinColumn(name = "id_rol")
+    private Rol rol;
+
+    public User(String name, String password, Rol rol) {
+        this.name = name;
+        this.password = password;
+        this.rol = rol;
+    }
+
+    public User() {}
 }
