@@ -61,15 +61,20 @@ public class AsteroidJdbcDaoImpl implements AsteroidDao {
     @Override
     public void save(Asteroid obj) {
         int dangerous = 0;
+        int nasaAsteroid = 0;
         if (obj.isDangerous()){
             dangerous = 1;
         }
-        String query = "insert into asteroid (`name`, `magnitude`,`diameter`,`dangerous`) " +
+        if (obj.isNasaAsteroid()){
+            nasaAsteroid = 1;
+        }
+        String query = "insert into asteroid (`name`, `magnitude`,`diameter`,`dangerous`,`nasaAsteroid`) " +
                 "VALUES ("
                 + "'" + obj.getName() + "'" + ","
                 + "'" + obj.getMagnitude() + "'" + ","
                 + "'" + obj.getDiameter() + "'" + ","
-                + "'" + dangerous + "'" + ")";
+                + "'" + dangerous + "'" + ","
+                + "'" + nasaAsteroid + "'" + ")";
         try {
             Statement stmt = this.conn.createStatement();
             stmt.execute(query);

@@ -63,6 +63,7 @@ public class Asteroid {
                 ", magnitude=" + magnitude +
                 ", diameter=" + diameter +
                 ", dangerous=" + dangerous +
+                ", nasa asteroid=" + nasaAsteroid +
                 '}';
     }
 }

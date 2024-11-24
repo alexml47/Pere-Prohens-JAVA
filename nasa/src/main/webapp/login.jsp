@@ -89,6 +89,26 @@
         a:hover {
             text-decoration: underline;
         }
+
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group select:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        .form-group select:hover {
+            border-color: #0056b3;
+        }
     </style>
 </head>
 <body>

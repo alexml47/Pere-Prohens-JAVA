@@ -50,6 +50,12 @@
             text-decoration: none;
         }
 
+        .button a{
+            color: white;
+            text-decoration: none;
+            list-style: none;
+        }
+
         .button:hover {
             background-color: #45a049;
         }
@@ -98,9 +104,7 @@
                 </form>
 
                 <!-- Create Asteroid Button -->
-                <form action="createAsteroid" method="get">
-                    <button class="button" type="submit">Create Asteroid</button>
-                </form>
+                <button class="button"><a href="createAsteroid">Create Asteroid</a></button>
             </c:when>
 
             <c:otherwise>

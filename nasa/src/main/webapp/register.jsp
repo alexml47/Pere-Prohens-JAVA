@@ -94,6 +94,33 @@
         .login-link a:hover {
             color: #45a049;
         }
+
+        .form-group {
+            margin-bottom: 20px;
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group select:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        .form-group select:hover {
+            border-color: #0056b3;
+        }
+
     </style>
 </head>
 <body>
@@ -109,7 +136,7 @@
             <label for="password">Password</label>
             <input type="password" name="password" id="password" required>
         </div>
-        <div>
+        <div class="form-group">
             <label for="rol">Role</label>
             <select name="rol" id="rol">
                 <option value="astronomer">Astronomer</option>
