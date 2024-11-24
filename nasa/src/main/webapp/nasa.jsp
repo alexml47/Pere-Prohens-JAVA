@@ -16,7 +16,6 @@
 
 <form action="edit" method="post">
     <input type="hidden" name="_method" value="patch">
-    
 </form>
 
 

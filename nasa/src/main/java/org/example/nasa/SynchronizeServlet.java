@@ -22,7 +22,7 @@ public class SynchronizeServlet extends HttpServlet {
             throw new RuntimeException(e);
         }
 
-        res.sendRedirect("nasa");
+        res.sendRedirect("asteroids");
 
     }
 }

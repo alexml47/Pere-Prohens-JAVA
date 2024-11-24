@@ -36,7 +36,7 @@ public class AproachDaoImpl implements AproachDao {
     }
 
     @Override
-    public List<Aproach> getApproachesByAsteroidId(Long asteroidId) {
+    public List<Aproach> getApproachesByAsteroidId(int asteroidId) {
         String query = "SELECT a FROM Aproach a WHERE a.asteroid.id = :asteroidId";
         return manager.createQuery(query, Aproach.class)
                 .setParameter("asteroidId", asteroidId)

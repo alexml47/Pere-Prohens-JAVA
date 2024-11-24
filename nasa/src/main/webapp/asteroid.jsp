@@ -16,7 +16,7 @@
 <p><c:out value="${asteroid.diameter}"></c:out></p>
 <p><c:out value="${asteroid.magnitude}"></c:out></p>
 
-<form action="aproach" method="post">
+<form action="aproach" method="get">
     <input type="hidden" name="id" id="id" value="<c:out value="${asteroid.id}"></c:out>">
     <button type="submit">Aproaches</button>
 </form>

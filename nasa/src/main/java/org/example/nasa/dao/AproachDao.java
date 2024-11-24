@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface AproachDao extends CrudDao<Aproach> {
 
-    List<Aproach> getApproachesByAsteroidId(Long asteroidId);
+    List<Aproach> getApproachesByAsteroidId(int asteroidId);
 }

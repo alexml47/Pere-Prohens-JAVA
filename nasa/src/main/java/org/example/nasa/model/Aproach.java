@@ -3,9 +3,11 @@ package org.example.nasa.model;
 import java.time.LocalDate;
 
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.Setter;
 
 
+@Data
 @Entity
 @Table(name = "aproach")
 public class Aproach {

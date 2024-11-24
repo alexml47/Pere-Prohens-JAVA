@@ -19,17 +19,19 @@ public class AsteroidApiService {
         List<Asteroid> asteroids = new ArrayList<Asteroid>();
 
         for (JsonObject ast : astJson) {
-            int id = getParameter(ast.getAsJsonObject(),"id").getAsInt();
+            int id = getParameter(ast,"id").getAsInt();
             String name = getParameter(ast,"name").getAsString();
             double magnitude = getParameter(ast,"absolute_magnitude_h").getAsDouble();
             boolean dangerous = getParameter(ast,"is_potentially_hazardous_asteroid").getAsBoolean();
+            JsonElement kilometers = getSubParameter(ast,"estimated_diameter","kilometers");
             double avgKilometer = 0.5 * (
-                    getSubParameter(ast,"estimated_diameter","estimated_diameter_min").getAsDouble() +
-                    getSubParameter(ast,"estimated_diameter","estimated_diameter_max").getAsDouble());
+                    getParameter(kilometers.getAsJsonObject(),"estimated_diameter_min").getAsDouble() +
+                    getParameter(kilometers.getAsJsonObject(),"estimated_diameter_max").getAsDouble());
             Asteroid asteroid = new Asteroid(id,name,magnitude,avgKilometer,dangerous);
             asteroid.setAprochments(
                     getAproaches(
                             getParameter(ast,"close_approach_data").getAsJsonArray(), asteroid));
+            asteroids.add(asteroid);
         }
         return asteroids;
     }
@@ -43,20 +45,16 @@ public class AsteroidApiService {
             String orbitingBody = getParameter(aproach.getAsJsonObject(),"orbiting_body").getAsString();
             returnAproaches.add(new Aproach(date,velocity,distance,orbitingBody,ast));
         }
+        System.out.println(returnAproaches);
         return returnAproaches;
     }
 
-    public JsonObject getParameter(JsonObject json,String parameter) {
-        return json.getAsJsonObject(parameter);
+    public JsonElement getParameter(JsonObject json,String parameter) {
+        return json.get(parameter);
     }
 
-    public JsonObject getSubParameter(JsonObject json,String parameter,String subParameter) {
+    public JsonElement getSubParameter(JsonObject json,String parameter,String subParameter) {
         return json.get(parameter).getAsJsonObject()
-                .get(subParameter).getAsJsonObject();
-    }
-
-    public static void main(String[] args) {
-        AsteroidApiService apiService = new AsteroidApiService();
-        apiService.getAsteroids();
+                .get(subParameter);
     }
 }

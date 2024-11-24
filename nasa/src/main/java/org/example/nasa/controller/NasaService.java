@@ -29,7 +29,7 @@ public class NasaService{
         return asteroidDao.findAll();
     }
 
-    public List<Aproach> findAllAproachesByAsteroidId(Long id){
+    public List<Aproach> findAllAproachesByAsteroidId(int id){
         return aproachDao.getApproachesByAsteroidId(id);
     }
 
@@ -63,3 +63,5 @@ public class NasaService{
         }
     }
 }
+
+

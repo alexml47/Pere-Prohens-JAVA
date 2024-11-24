@@ -21,23 +21,16 @@ import java.util.List;
 @WebServlet(name="aproachServlet",value="/aproach")
 public class AproachServlet extends HttpServlet {
 
-    public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
-
-        try {
-            NasaService service = NasaServiceFactory.createNasaService();
-            req.setAttribute("aproaches",service.findAllAproachesByAsteroidId(Long.valueOf(req.getParameter("id"))));
-
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-
+    public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        NasaService service = NasaServiceFactory.createNasaService();
+        int id = Integer.parseInt(req.getParameter("id"));
+        req.setAttribute("aproaches",service.findAllAproachesByAsteroidId(id));
 
         try {
             req.getRequestDispatcher("aproach.jsp").forward(req,res);
         } catch (ServletException e) {
             e.printStackTrace();
         }
-
     }
 }
 
