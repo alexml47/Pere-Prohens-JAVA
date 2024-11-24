@@ -36,6 +36,6 @@ public class UserOrmDaoImpl implements UserDao {
 
     @Override
     public boolean userAstronomer(User user) {
-        return Objects.equals(user.getRol().getName(), "astronomer");
+        return Objects.equals(user.getRol().getRol(), "astronomer");
     }
 }

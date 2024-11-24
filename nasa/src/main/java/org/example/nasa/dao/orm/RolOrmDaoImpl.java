@@ -17,6 +17,9 @@ public class RolOrmDaoImpl implements RolDao {
 
     @Override
     public Rol getRol(String rol) {
-        return manager.find(Rol.class, rol);
+        String query = "SELECT a FROM Rol a WHERE a.rol = :rol";
+        return manager.createQuery(query, Rol.class)
+                .setParameter("rol", rol)
+                .getSingleResult();
     }
 }

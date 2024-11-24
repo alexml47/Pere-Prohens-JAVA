@@ -7,7 +7,7 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name = "Rol")
+@Table(name = "rol")
 public class Rol {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,7 +15,7 @@ public class Rol {
     int id;
 
     @Column
-    String name;
+    String rol;
 
     @OneToMany(mappedBy = "rol", cascade = CascadeType.ALL)
     private List<User> users;
