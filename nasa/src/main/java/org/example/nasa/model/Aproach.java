@@ -29,7 +29,7 @@ public class Aproach {
     @Column(name = "orbitingBody")
     private String orbitingBody;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "id_asteroid")
     private Asteroid asteroid;
 

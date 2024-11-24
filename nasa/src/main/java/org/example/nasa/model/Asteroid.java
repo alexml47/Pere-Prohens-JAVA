@@ -29,17 +29,11 @@ public class Asteroid {
     @Column(name = "dangerous")
     private boolean dangerous;
 
+    @Column(name = "nasaAsteroid")
+    private boolean nasaAsteroid;
+
     @OneToMany(mappedBy = "asteroid", cascade = CascadeType.ALL)
     private List<Aproach> aprochments;
-
-    public Asteroid(int id, String name, double magnitude, double diameter, boolean dangerous, List<Aproach> aprochments) {
-        this.id = id;
-        this.name = name;
-        this.magnitude = magnitude;
-        this.diameter = diameter;
-        this.dangerous = dangerous;
-        this.aprochments = aprochments;
-    }
 
     public Asteroid(int id, String name, double magnitude, double diameter, boolean dangerous) {
         this.id = id;
@@ -49,11 +43,12 @@ public class Asteroid {
         this.dangerous = dangerous;
     }
 
-    public Asteroid(String name, double magnitude, double diameter, boolean dangerous) {
+    public Asteroid(String name, double magnitude, double diameter, boolean dangerous, boolean nasaAsteroid) {
         this.name = name;
         this.magnitude = magnitude;
         this.diameter = diameter;
         this.dangerous = dangerous;
+        this.nasaAsteroid = nasaAsteroid;
     }
 
     public Asteroid() {

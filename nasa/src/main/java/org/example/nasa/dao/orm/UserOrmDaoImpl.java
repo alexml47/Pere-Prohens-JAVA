@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import org.example.nasa.dao.AsteroidDao;
 import org.example.nasa.dao.UserDao;
 import org.example.nasa.model.Asteroid;
+import org.example.nasa.model.Rol;
 import org.example.nasa.model.User;
 
 import java.util.List;
@@ -18,24 +19,29 @@ public class UserOrmDaoImpl implements UserDao {
     }
 
     @Override
-    public boolean checkUser(String name, String password) {
-        User user = manager.find(User.class, name);
-        return user.getPassword().equals(password);
-    }
-
-    @Override
-    public void save(User obj) {
-        try{
-            manager.getTransaction().begin();
-            manager.persist(obj);
-            manager.getTransaction().commit();
-        } catch (RollbackException e){
+    public User getUser(String name) {
+        try {
+            String query = "SELECT u FROM User u WHERE u.name = :name";
+            return manager.createQuery(query, User.class)
+                    .setParameter("name", name)
+                    .getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
     @Override
-    public boolean userAstronomer(User user) {
-        return Objects.equals(user.getRol().getRol(), "astronomer");
+    public void save(User user) {
+        try{
+            manager.getTransaction().begin();
+            Rol managedRol = manager.merge(user.getRol());
+            user.setRol(managedRol);
+            manager.persist(user);
+            manager.getTransaction().commit();
+        } catch (RollbackException e){
+            throw new RuntimeException(String.valueOf(user) + "hola");
+        }
     }
 }

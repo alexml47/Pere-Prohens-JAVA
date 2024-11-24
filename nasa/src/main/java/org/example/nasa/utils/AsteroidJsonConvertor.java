@@ -1,17 +1,17 @@
-package org.example.nasa.service;
+package org.example.nasa.utils;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonArray;
 import org.example.nasa.model.Aproach;
 import org.example.nasa.model.Asteroid;
-import org.example.nasa.utils.NasaProvider;
+import org.example.nasa.provider.NasaProvider;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AsteroidApiService {
+public class AsteroidJsonConvertor {
     private final String API_KEY = "MzHYWv6eaaxfR5b6unKvncJYTq0jX4br1mhNd7Ib";
 
     public List<Asteroid> getAsteroids() {
@@ -26,7 +26,7 @@ public class AsteroidApiService {
             double avgKilometer = 0.5 * (
                     getParameter(kilometers.getAsJsonObject(),"estimated_diameter_min").getAsDouble() +
                     getParameter(kilometers.getAsJsonObject(),"estimated_diameter_max").getAsDouble());
-            Asteroid asteroid = new Asteroid(name,magnitude,avgKilometer,dangerous);
+            Asteroid asteroid = new Asteroid(name,magnitude,avgKilometer,dangerous,true);
             asteroid.setAprochments(
                     getAproaches(
                             getParameter(ast,"close_approach_data").getAsJsonArray(), asteroid));

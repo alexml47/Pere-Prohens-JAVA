@@ -1,10 +1,11 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Create Asteroid</title>
+  <title>Create Approach</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -30,19 +31,13 @@
       display: block;
       color: #333;
     }
-    input[type="text"] {
+    input[type="text"],
+    input[type="date"] {
       width: 100%;
       padding: 10px;
       margin: 10px 0;
       border: 1px solid #ccc;
       border-radius: 4px;
-    }
-    a {
-      display: block;
-      text-align: center;
-      margin-top: 20px;
-      color: #007BFF;
-      text-decoration: none;
     }
     button {
       background-color: #1e2a47;
@@ -65,28 +60,31 @@
 <body>
 
 <div class="container">
-  <h1>Create Asteroid</h1>
-  <form action="createAsteroid" method="post">
+  <h1>Create Approach</h1>
+  <form action="createAproach" method="post">
 
-    <!-- Input Fields for Asteroid -->
+    <!-- Hidden Input for Asteroid ID -->
+    <input type="hidden" name="id_asteroid" id="id_asteroid" value="<c:out value='${asteroid.id}'/>">
+
+    <!-- Input Fields for Approach -->
     <div class="form-group">
-      <label for="name">Name</label>
-      <input type="text" name="name" id="name" required>
+      <label for="aproachDate">Approach Date</label>
+      <input type="date" name="aproachDate" id="aproachDate" required>
     </div>
 
     <div class="form-group">
-      <label for="magnitude">Magnitude</label>
-      <input type="number" name="magnitude" id="magnitude" required>
+      <label for="velocity">Velocity (km/s)</label>
+      <input type="number" name="velocity" id="velocity" required>
     </div>
 
     <div class="form-group">
-      <label for="diameter">Diameter (km)</label>
-      <input type="number" name="diameter" id="diameter" required>
+      <label for="distance">Distance (km)</label>
+      <input type="number" name="distance" id="distance" required>
     </div>
 
     <div class="form-group">
-      <label for="dangerous">Dangerous (Yes/No)</label>
-      <input type="checkbox" name="dangerous" id="dangerous">
+      <label for="orbitingBody">Orbiting Body</label>
+      <input type="text" name="orbitingBody" id="orbitingBody" required>
     </div>
 
     <!-- Submit Button -->

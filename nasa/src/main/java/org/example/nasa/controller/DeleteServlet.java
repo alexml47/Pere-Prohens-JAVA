@@ -1,11 +1,11 @@
-package org.example.nasa;
+package org.example.nasa.controller;
 
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.example.nasa.controller.NasaService;
-import org.example.nasa.controller.NasaServiceFactory;
+import org.example.nasa.service.NasaService;
+import org.example.nasa.service.NasaServiceFactory;
 
 import java.io.IOException;
 
@@ -16,7 +16,7 @@ public class DeleteServlet extends HttpServlet {
         try {
             NasaService service = NasaServiceFactory.createNasaService();
             int id = Integer.parseInt(req.getParameter("id"));
-            service.delete(service.findAsteroid(id));
+            service.deleteAsteroid(service.findAsteroid(id));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

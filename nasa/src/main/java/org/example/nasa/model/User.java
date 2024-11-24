@@ -18,7 +18,7 @@ public class User {
     @Column
     String password;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "id_rol")
     private Rol rol;
 

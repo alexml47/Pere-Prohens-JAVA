@@ -1,12 +1,12 @@
-package org.example.nasa;
+package org.example.nasa.controller;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.example.nasa.controller.NasaService;
-import org.example.nasa.controller.NasaServiceFactory;
+import org.example.nasa.service.NasaService;
+import org.example.nasa.service.NasaServiceFactory;
 import org.example.nasa.model.Rol;
 import org.example.nasa.model.User;
 
@@ -21,11 +21,11 @@ public class RegisterServlet extends HttpServlet {
 
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         NasaService nasaService = NasaServiceFactory.createNasaService();
-        String name = req.getParameter("name");
+        String name = req.getParameter("username");
         String password = req.getParameter("password");
         String rol = req.getParameter("rol");
 
-        Rol rolAssigned = new Rol();
+        Rol rolAssigned;
         if (Objects.equals(rol, "astronomer")) {
             rolAssigned = nasaService.getRol("astronomer");
         } else {
@@ -33,6 +33,6 @@ public class RegisterServlet extends HttpServlet {
         }
         User user = new User(name, password, rolAssigned);
         nasaService.saveUser(user);
-        res.sendRedirect("/asteroids");
+        res.sendRedirect("asteroids");
     }
 }

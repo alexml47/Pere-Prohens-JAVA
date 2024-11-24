@@ -4,7 +4,6 @@ import org.example.nasa.model.Asteroid;
 import org.example.nasa.model.User;
 
 public interface UserDao{
-    boolean checkUser(String name, String password);
+    User getUser(String name);
     void save(User user);
-    boolean userAstronomer(User user);
 }

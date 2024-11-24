@@ -3,6 +3,8 @@ package org.example.nasa.dao.orm;
 import jakarta.persistence.*;
 import org.example.nasa.dao.AproachDao;
 import org.example.nasa.model.Aproach;
+import org.example.nasa.model.Asteroid;
+import org.example.nasa.model.Rol;
 
 import java.util.List;
 
@@ -28,6 +30,8 @@ public class AproachOrmDaoImpl implements AproachDao {
     public void save(Aproach obj) {
         try{
             manager.getTransaction().begin();
+            Asteroid managedAsteroid = manager.merge(obj.getAsteroid());
+            obj.setAsteroid(managedAsteroid);
             manager.persist(obj);
             manager.getTransaction().commit();
         } catch (RollbackException e){

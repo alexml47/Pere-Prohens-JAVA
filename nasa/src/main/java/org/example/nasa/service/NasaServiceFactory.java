@@ -1,4 +1,4 @@
-package org.example.nasa.controller;
+package org.example.nasa.service;
 
 public class NasaServiceFactory {
 

@@ -1,8 +1,6 @@
-package org.example.nasa.controller;
+package org.example.nasa.service;
 
 import org.example.nasa.dao.*;
-import org.example.nasa.dao.jdbc.AproachJdbcDaoImpl;
-import org.example.nasa.dao.jdbc.AsteroidJdbcDaoImpl;
 import org.example.nasa.dao.orm.AproachOrmDaoImpl;
 import org.example.nasa.dao.orm.AsteroidOrmDaoImpl;
 import org.example.nasa.dao.orm.RolOrmDaoImpl;
@@ -11,7 +9,7 @@ import org.example.nasa.model.Aproach;
 import org.example.nasa.model.Asteroid;
 import org.example.nasa.model.Rol;
 import org.example.nasa.model.User;
-import org.example.nasa.service.AsteroidApiService;
+import org.example.nasa.utils.AsteroidJsonConvertor;
 
 import java.util.List;
 
@@ -25,16 +23,20 @@ public class NasaService{
         return rolDao.getRol(rol);
     }
 
+    public User getUser(String name){
+        return userDao.getUser(name);
+    }
+
     public void saveUser(User user){
         userDao.save(user);
     }
 
-    public boolean userAstronomer(User user){
-        return userDao.userAstronomer(user);
-    }
-
     public List<Asteroid> findAllAsteroids(){
         return asteroidDao.findAll();
+    }
+
+    public void saveAproach(Aproach aproach){
+        aproachDao.save(aproach);
     }
 
     public List<Aproach> findAllAproachesByAsteroidId(int id){
@@ -49,11 +51,11 @@ public class NasaService{
         return asteroidDao.findById(id);
     }
 
-    public void update(Asteroid obj) {
+    public void updateAsteroid(Asteroid obj) {
         asteroidDao.update(obj);
     }
 
-    public void delete(Asteroid asteroid) {
+    public void deleteAsteroid(Asteroid asteroid) {
         asteroidDao.delete(asteroid);
     }
 
@@ -61,11 +63,13 @@ public class NasaService{
         List <Asteroid> asteroids = findAllAsteroids();
         if (!asteroids.isEmpty()) {
             for (Asteroid asteroid : asteroids) {
-                asteroidDao.delete(asteroid);
+                if (asteroid.isNasaAsteroid()){
+                    asteroidDao.delete(asteroid);
+                }
             }
         }
 
-        AsteroidApiService api = new AsteroidApiService();
+        AsteroidJsonConvertor api = new AsteroidJsonConvertor();
         for(Asteroid asteroid : api.getAsteroids()){
             saveAsteroid(asteroid);
         }

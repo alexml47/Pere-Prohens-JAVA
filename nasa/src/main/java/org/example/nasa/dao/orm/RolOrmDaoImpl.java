@@ -2,6 +2,7 @@ package org.example.nasa.dao.orm;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.Persistence;
 import org.example.nasa.dao.RolDao;
 import org.example.nasa.model.Rol;
@@ -18,8 +19,12 @@ public class RolOrmDaoImpl implements RolDao {
     @Override
     public Rol getRol(String rol) {
         String query = "SELECT a FROM Rol a WHERE a.rol = :rol";
-        return manager.createQuery(query, Rol.class)
-                .setParameter("rol", rol)
-                .getSingleResult();
+        try {
+            return manager.createQuery(query, Rol.class)
+                    .setParameter("rol", rol)
+                    .getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 }

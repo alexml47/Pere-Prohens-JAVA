@@ -1,12 +1,12 @@
-package org.example.nasa;
+package org.example.nasa.controller;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.example.nasa.controller.NasaService;
-import org.example.nasa.controller.NasaServiceFactory;
+import org.example.nasa.service.NasaService;
+import org.example.nasa.service.NasaServiceFactory;
 
 import java.io.IOException;
 
@@ -17,7 +17,7 @@ public class AproachServlet extends HttpServlet {
         NasaService service = NasaServiceFactory.createNasaService();
         int id = Integer.parseInt(req.getParameter("id"));
         req.setAttribute("aproaches",service.findAllAproachesByAsteroidId(id));
-
+        req.setAttribute("asteroid", id);
         try {
             req.getRequestDispatcher("aproach.jsp").forward(req,res);
         } catch (ServletException e) {

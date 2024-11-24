@@ -1,4 +1,4 @@
-package org.example.nasa.utils;
+package org.example.nasa.provider;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;

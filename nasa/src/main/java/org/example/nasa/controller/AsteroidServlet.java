@@ -1,12 +1,12 @@
-package org.example.nasa;
+package org.example.nasa.controller;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.example.nasa.controller.NasaService;
-import org.example.nasa.controller.NasaServiceFactory;
+import org.example.nasa.service.NasaService;
+import org.example.nasa.service.NasaServiceFactory;
 
 
 import java.io.IOException;

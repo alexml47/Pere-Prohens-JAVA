@@ -1,16 +1,16 @@
-package org.example.nasa;
+package org.example.nasa.controller;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.example.nasa.controller.NasaService;
+import org.example.nasa.service.NasaService;
 
 import java.io.IOException;
 
-@WebServlet(name="nasaServlet",value="/asteroids")
-public class NasaServlet extends HttpServlet {
+@WebServlet(name="asteroidsServlet",value="/asteroids")
+public class AsteroidsServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
 
@@ -24,7 +24,7 @@ public class NasaServlet extends HttpServlet {
 
 
         try {
-            req.getRequestDispatcher("nasa.jsp").forward(req,res);
+            req.getRequestDispatcher("asteroids.jsp").forward(req,res);
         } catch (ServletException e) {
             e.printStackTrace();
         }
