@@ -32,7 +32,7 @@ public class CreateAsteroidServlet extends HttpServlet {
         boolean dangerous = Objects.equals(req.getParameter("dangerous"), "on");
 
         try {
-            AsteroidService service = ServiceFactory.implementation(req).createAsteroidService();
+            AsteroidService service = ServiceFactory.implementation(req.getAttribute("implementation").toString()).createAsteroidService();
             service.saveAsteroid(new Asteroid(name,magnitude,diameter,dangerous,false));
 
         } catch (Exception e) {

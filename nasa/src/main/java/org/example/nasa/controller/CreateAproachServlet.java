@@ -20,7 +20,7 @@ import java.time.LocalDate;
 public class CreateAproachServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
-        AsteroidService service = ServiceFactory.implementation(req).createAsteroidService();
+        AsteroidService service = ServiceFactory.implementation(req.getAttribute("implementation").toString()).createAsteroidService();
 
         int id = Integer.parseInt(req.getParameter("id"));
         Asteroid ast = service.findAsteroid(id);
@@ -33,8 +33,8 @@ public class CreateAproachServlet extends HttpServlet {
     }
 
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
-        AsteroidService asteroidService = ServiceFactory.implementation(req).createAsteroidService();
-        AproachService aproachService = ServiceFactory.implementation(req).createAproachService();
+        AsteroidService asteroidService = ServiceFactory.implementation(req.getAttribute("implementation").toString()).createAsteroidService();
+        AproachService aproachService = ServiceFactory.implementation(req.getAttribute("implementation").toString()).createAproachService();
 
         LocalDate name = LocalDate.parse(req.getParameter("aproachDate"));
         double velocity = Double.parseDouble(req.getParameter("velocity"));

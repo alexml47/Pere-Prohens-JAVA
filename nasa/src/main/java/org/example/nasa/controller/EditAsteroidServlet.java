@@ -19,7 +19,7 @@ import java.util.Objects;
 public class EditAsteroidServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
-        AsteroidService service = ServiceFactory.implementation(req).createAsteroidService();
+        AsteroidService service = ServiceFactory.implementation(req.getAttribute("implementation").toString()).createAsteroidService();
 
         int id = Integer.parseInt(req.getParameter("id"));
         Asteroid ast = service.findAsteroid(id);
@@ -33,7 +33,7 @@ public class EditAsteroidServlet extends HttpServlet {
     }
 
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
-        AsteroidService service = ServiceFactory.implementation(req).createAsteroidService();
+        AsteroidService service = ServiceFactory.implementation(req.getAttribute("implementation").toString()).createAsteroidService();
 
         int id = Integer.parseInt(req.getParameter("id"));
         String name = req.getParameter("name");

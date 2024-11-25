@@ -24,8 +24,8 @@ public class RegisterServlet extends HttpServlet {
     }
 
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
-        RolService rolService = ServiceFactory.implementation(req).createRolService();
-        UserService userService = ServiceFactory.implementation(req).createUserService();
+        RolService rolService = ServiceFactory.implementation(req.getAttribute("implementation").toString()).createRolService();
+        UserService userService = ServiceFactory.implementation(req.getAttribute("implementation").toString()).createUserService();
 
         String name = req.getParameter("username");
         String password = req.getParameter("password");

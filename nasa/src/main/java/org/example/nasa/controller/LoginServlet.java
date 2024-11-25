@@ -26,7 +26,7 @@ public class LoginServlet extends HttpServlet {
     }
 
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        ServiceFactory factory = ServiceFactory.implementation(req);
+        ServiceFactory factory = ServiceFactory.implementation(req.getAttribute("implementation").toString());
         UserService service = factory.createUserService();
 
         String username = req.getParameter("username");
