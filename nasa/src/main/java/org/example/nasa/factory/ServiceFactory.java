@@ -14,9 +14,6 @@ public abstract class ServiceFactory {
     public abstract UserService createUserService();
 
     public static ServiceFactory implementation(String implementation) {
-        if (implementation == null){
-            implementation = "ORM";
-        }
         switch(implementation){
             case "JDBC":
                 return new ServiceJdbcFactory();

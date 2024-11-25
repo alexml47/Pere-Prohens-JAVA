@@ -17,7 +17,8 @@ import java.io.IOException;
 public class AproachServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
-        AproachService service = ServiceFactory.implementation(req.getAttribute("implementation").toString()).createAproachService();
+        String impl = req.getAttribute("implementation") == null ? "ORM" : req.getAttribute("implementation").toString();
+        AproachService service = ServiceFactory.implementation(impl).createAproachService();
 
         int id = Integer.parseInt(req.getParameter("id"));
         req.setAttribute("aproaches",service.findAllAproachesByAsteroidId(id));

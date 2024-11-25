@@ -26,12 +26,13 @@ public class LoginServlet extends HttpServlet {
     }
 
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        ServiceFactory factory = ServiceFactory.implementation(req.getAttribute("implementation").toString());
+        String impl = req.getAttribute("implementation") == null ? "ORM" : req.getAttribute("implementation").toString();
+        ServiceFactory factory = ServiceFactory.implementation(impl);
+
         UserService service = factory.createUserService();
 
         String username = req.getParameter("username");
         String password = req.getParameter("password");
-        password = Encryptor.encrypt(password);
         String implementation = req.getParameter("implementation");
 
         User user = service.getUser(username);
@@ -40,7 +41,7 @@ public class LoginServlet extends HttpServlet {
             req.setAttribute("error","Invalid username");
             req.getRequestDispatcher("login.jsp").forward(req,res);
         } else {
-            if (user.getPassword().equals(password)){
+            if (Encryptor.verifyPassword(password, user.getPassword())){
                 Session.setAttribute(req,"Observer",true);
                 Session.setAttribute(req,"Astronomer",false);
 

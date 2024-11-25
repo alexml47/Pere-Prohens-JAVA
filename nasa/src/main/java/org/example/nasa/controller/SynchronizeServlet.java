@@ -17,7 +17,8 @@ public class SynchronizeServlet extends HttpServlet {
 
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
         try {
-            AsteroidService service = ServiceFactory.implementation(req.getAttribute("implementation").toString()).createAsteroidService();
+            String impl = req.getAttribute("implementation") == null ? "ORM" : req.getAttribute("implementation").toString();
+            AsteroidService service = ServiceFactory.implementation(impl).createAsteroidService();
 
             service.synchronize();
 

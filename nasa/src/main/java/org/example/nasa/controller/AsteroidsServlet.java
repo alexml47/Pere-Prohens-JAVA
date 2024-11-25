@@ -17,7 +17,8 @@ public class AsteroidsServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
         try {
-            AsteroidService service = ServiceFactory.implementation(req.getAttribute("implementation").toString()).createAsteroidService();
+            String impl = req.getAttribute("implementation") == null ? "ORM" : req.getAttribute("implementation").toString();
+            AsteroidService service = ServiceFactory.implementation(impl).createAsteroidService();
 
             req.setAttribute("asteroids",service.findAllAsteroids());
         } catch (Exception e) {
