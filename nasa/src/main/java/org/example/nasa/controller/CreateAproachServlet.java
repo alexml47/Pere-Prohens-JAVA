@@ -20,7 +20,7 @@ import java.time.LocalDate;
 public class CreateAproachServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
-        String impl = req.getAttribute("implementation") == null ? "ORM" : req.getAttribute("implementation").toString();
+        String impl = Session.getAttribute(req,"implementation") == null ? "ORM" : Session.getAttribute(req,"implementation");
         AsteroidService service = ServiceFactory.implementation(impl).createAsteroidService();
 
         int id = Integer.parseInt(req.getParameter("id"));

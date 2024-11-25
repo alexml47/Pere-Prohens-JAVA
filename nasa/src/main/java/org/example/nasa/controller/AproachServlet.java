@@ -17,7 +17,7 @@ import java.io.IOException;
 public class AproachServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
-        String impl = req.getAttribute("implementation") == null ? "ORM" : req.getAttribute("implementation").toString();
+        String impl = Session.getAttribute(req,"implementation") == null ? "ORM" : Session.getAttribute(req,"implementation");
         AproachService service = ServiceFactory.implementation(impl).createAproachService();
 
         int id = Integer.parseInt(req.getParameter("id"));

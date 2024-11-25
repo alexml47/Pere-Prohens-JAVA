@@ -24,7 +24,7 @@ public class RegisterServlet extends HttpServlet {
     }
 
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
-        String impl = req.getAttribute("implementation") == null ? "ORM" : req.getAttribute("implementation").toString();
+        String impl = Session.getAttribute(req,"implementation") == null ? "ORM" : Session.getAttribute(req,"implementation");
 
         RolService rolService = ServiceFactory.implementation(impl).createRolService();
         UserService userService = ServiceFactory.implementation(impl).createUserService();

@@ -25,7 +25,7 @@ public class UserJdbcDaoImpl implements UserDao {
         User user = null;
         try {
             Statement stmt = this.conn.createStatement();
-            ResultSet rs = stmt.executeQuery("select * from user where rol = " + name);
+            ResultSet rs = stmt.executeQuery("select * from user where name = " + name);
             if (rs.next()) {
                 user = getUserFromResult(rs);
             }

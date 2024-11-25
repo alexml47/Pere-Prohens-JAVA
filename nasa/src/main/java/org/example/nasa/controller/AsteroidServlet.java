@@ -21,13 +21,11 @@ public class AsteroidServlet extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
 
         try {
-            String impl = req.getAttribute("implementation") == null ? "ORM" : req.getAttribute("implementation").toString();
+            String impl = Session.getAttribute(req,"implementation") == null ? "ORM" : Session.getAttribute(req,"implementation");
             AsteroidService service = ServiceFactory.implementation(impl).createAsteroidService();
-            // throw new RunTimeException(impl)
 
             int id = Integer.parseInt(req.getParameter("id"));
             req.setAttribute("asteroid",service.findAsteroid(id));
-
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

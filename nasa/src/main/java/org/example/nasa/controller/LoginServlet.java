@@ -26,7 +26,7 @@ public class LoginServlet extends HttpServlet {
     }
 
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        String impl = req.getAttribute("implementation") == null ? "ORM" : req.getAttribute("implementation").toString();
+        String impl = Session.getAttribute(req,"implementation") == null ? "ORM" : Session.getAttribute(req,"implementation");
         ServiceFactory factory = ServiceFactory.implementation(impl);
 
         UserService service = factory.createUserService();
@@ -50,6 +50,7 @@ public class LoginServlet extends HttpServlet {
                 } else {
                     Session.setAttribute(req,"Astronomer",false);
                 }
+
 
                 Session.setAttribute(req,"implementation",implementation);
                 res.sendRedirect("asteroids");

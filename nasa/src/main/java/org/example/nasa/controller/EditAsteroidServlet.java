@@ -19,7 +19,7 @@ import java.util.Objects;
 public class EditAsteroidServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
-        String impl = req.getAttribute("implementation") == null ? "ORM" : req.getAttribute("implementation").toString();
+        String impl = Session.getAttribute(req,"implementation") == null ? "ORM" : Session.getAttribute(req,"implementation");
         AsteroidService service = ServiceFactory.implementation(impl).createAsteroidService();
 
         int id = Integer.parseInt(req.getParameter("id"));
@@ -34,7 +34,8 @@ public class EditAsteroidServlet extends HttpServlet {
     }
 
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
-        AsteroidService service = ServiceFactory.implementation(req.getAttribute("implementation").toString()).createAsteroidService();
+        String impl = Session.getAttribute(req,"implementation") == null ? "ORM" : Session.getAttribute(req,"implementation");
+        AsteroidService service = ServiceFactory.implementation(impl).createAsteroidService();
 
         int id = Integer.parseInt(req.getParameter("id"));
         String name = req.getParameter("name");
