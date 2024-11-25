@@ -24,15 +24,6 @@ public class MySQLConnection {
         }
         return instance;
     }
-    public void disconnect(){
-        if(connection != null){
-            try{
-                connection.close();
-            }catch(Exception e){
-                System.err.println("Error disconneting mysql"+e.getMessage());
-            }
-        }
-    }
     public Connection getConnection(){
         if(connection != null){
             return this.connection;

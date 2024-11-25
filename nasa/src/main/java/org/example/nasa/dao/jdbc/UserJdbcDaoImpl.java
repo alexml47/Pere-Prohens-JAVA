@@ -16,7 +16,7 @@ public class UserJdbcDaoImpl implements UserDao {
     Connection conn;
 
     public UserJdbcDaoImpl() {
-        MySQLConnection mysql = new MySQLConnection();
+        MySQLConnection mysql = MySQLConnection.getInstance();
         this.conn = mysql.getConnection();
     }
 

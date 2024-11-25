@@ -12,6 +12,7 @@ import org.example.nasa.model.User;
 import org.example.nasa.factory.ServiceFactory;
 import org.example.nasa.service.AsteroidService;
 import org.example.nasa.service.UserService;
+import org.example.nasa.utils.Encryptor;
 import org.example.nasa.utils.Session;
 
 import java.io.IOException;
@@ -30,6 +31,7 @@ public class LoginServlet extends HttpServlet {
 
         String username = req.getParameter("username");
         String password = req.getParameter("password");
+        password = Encryptor.encrypt(password);
         String implementation = req.getParameter("implementation");
 
         User user = service.getUser(username);

@@ -14,7 +14,7 @@ public class RolJdbcDaoImpl implements RolDao {
     Connection conn;
 
     public RolJdbcDaoImpl() {
-        MySQLConnection mysql = new MySQLConnection();
+        MySQLConnection mysql = MySQLConnection.getInstance();
         this.conn = mysql.getConnection();
     }
 

@@ -17,7 +17,7 @@ public class AproachJdbcDaoImpl implements AproachDao {
     Connection conn;
 
     public AproachJdbcDaoImpl() {
-        MySQLConnection mysql = new MySQLConnection();
+        MySQLConnection mysql = MySQLConnection.getInstance();
         this.conn = mysql.getConnection();
     }
 

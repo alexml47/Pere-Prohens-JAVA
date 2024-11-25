@@ -11,6 +11,7 @@ import org.example.nasa.factory.ServiceFactory;
 import org.example.nasa.service.*;
 import org.example.nasa.model.Rol;
 import org.example.nasa.model.User;
+import org.example.nasa.utils.Encryptor;
 import org.example.nasa.utils.Session;
 
 import java.io.IOException;
@@ -43,6 +44,7 @@ public class RegisterServlet extends HttpServlet {
             } else {
                 rolAssigned = rolService.getRol("observer");
             }
+            password = Encryptor.encrypt(password);
             User user = new User(name, password, rolAssigned);
             userService.saveUser(user);
             res.sendRedirect("asteroids");

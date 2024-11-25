@@ -21,7 +21,7 @@ public class AsteroidJdbcDaoImpl implements AsteroidDao {
     Connection conn;
 
     public AsteroidJdbcDaoImpl() {
-        MySQLConnection mysql = new MySQLConnection();
+        MySQLConnection mysql = MySQLConnection.getInstance();
         this.conn = mysql.getConnection();
     }
 
