@@ -4,6 +4,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.Persistence;
+import org.example.nasa.config.MySQLHibernate;
 import org.example.nasa.dao.RolDao;
 import org.example.nasa.model.Rol;
 import org.example.nasa.model.User;
@@ -12,8 +13,8 @@ public class RolOrmDaoImpl implements RolDao {
     EntityManager manager;
 
     public RolOrmDaoImpl() {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("nasa");
-        this.manager = emf.createEntityManager();
+        MySQLHibernate mysql = new MySQLHibernate();
+        manager = mysql.getConnection();
     }
 
     public Rol getRol(int id) {

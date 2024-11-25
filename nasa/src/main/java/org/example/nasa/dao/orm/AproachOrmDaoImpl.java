@@ -1,6 +1,7 @@
 package org.example.nasa.dao.orm;
 
 import jakarta.persistence.*;
+import org.example.nasa.config.MySQLHibernate;
 import org.example.nasa.dao.AproachDao;
 import org.example.nasa.model.Aproach;
 import org.example.nasa.model.Asteroid;
@@ -12,8 +13,8 @@ public class AproachOrmDaoImpl implements AproachDao {
     EntityManager manager;
 
     public AproachOrmDaoImpl() {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("nasa");
-        this.manager = emf.createEntityManager();
+        MySQLHibernate mysql = new MySQLHibernate();
+        manager = mysql.getConnection();
     }
 
     @Override

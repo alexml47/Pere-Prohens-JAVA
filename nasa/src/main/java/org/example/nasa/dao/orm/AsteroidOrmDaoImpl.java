@@ -1,6 +1,7 @@
 package org.example.nasa.dao.orm;
 
 import jakarta.persistence.*;
+import org.example.nasa.config.MySQLHibernate;
 import org.example.nasa.dao.AsteroidDao;
 import org.example.nasa.model.Asteroid;
 
@@ -10,8 +11,8 @@ public class AsteroidOrmDaoImpl implements AsteroidDao {
     EntityManager manager;
 
     public AsteroidOrmDaoImpl() {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("nasa");
-        this.manager = emf.createEntityManager();
+        MySQLHibernate mysql = new MySQLHibernate();
+        manager = mysql.getConnection();
     }
 
     @Override
